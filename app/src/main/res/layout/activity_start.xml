@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <!-- 상단 텍스트: 챌린지 시작 -->
+        <TextView
+            android:id="@+id/startText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="챌린지를 시작하세요!"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:clickable="true"
+            android:focusable="true" />
+
+        <!-- 중단 위: 챌린지 추천 리스트 -->
+        <ListView
+            android:id="@+id/challengeList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:dividerHeight="1dp" />
+
+        <!-- 시간 선택 버튼 -->
+        <Button
+            android:id="@+id/selectTimeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="시간 선택하기"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 선택된 시간 표시 -->
+        <TextView
+            android:id="@+id/selectedTimeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="선택된 시간: 00:00"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp" />
+
+        <!-- 챌린지 시작 버튼 -->
+        <Button
+            android:id="@+id/startChallengeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="챌린지 시작하기"
+            android:layout_gravity="center"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:backgroundTint="@color/purple_500" />
+
+        <!-- 하단: 동기부여 메시지 -->
+        <TextView
+            android:id="@+id/motivationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="꾸준함이 성공의 열쇠입니다!"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:padding="16dp"
+            android:textStyle="italic" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

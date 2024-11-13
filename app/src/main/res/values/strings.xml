@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">Digital Detox App</string>
+
+    <!-- UserPost Example Text -->
+    <string name="user_post_1">"Test UserPost1. 열심히 디톡스 코딩 중."</string>
+    <string name="user_post_2">"Test UserPost2. 코딩 쪼금 빡세긴 하네요"</string>
+    <string name="user_post_3">"Test UserPost3. 근데 또 막상 할 만 할지도..?"</string>
+
+    <!-- Ranking User Example -->
+    <string name="ranking_user_1">"사용자 1: 120점"</string>
+    <string name="ranking_user_2">"사용자 2: 110점"</string>
+    <string name="ranking_user_3">"사용자 3: 105점"</string>
+    <string name="ranking_user_4">"사용자 4: 102점"</string>
+    <string name="ranking_user_5">"사용자 5: 100점"</string>
+    <string name="ranking_user_6">"사용자 6: 98점"</string>
+    <string name="ranking_user_7">"사용자 7: 95점"</string>
+    <string name="ranking_user_8">"사용자 8: 92점"</string>
+    <string name="ranking_user_9">"사용자 9: 90점"</string>
+    <string name="ranking_user_10">"사용자 10: 85점"</string>
+
+    <!-- Review Example Text -->
+    <string name="review_1">"Test Review1 많이 써주세요.."</string>
+    <string name="review_2">"Test Review2 좋은.. 앱입니다.."</string>
+    <string name="review_3">"Test Review3 삶은.. 계란..."</string>
+
+    <!-- Goal Options for Selection -->
+    <string-array name="goal_options">
+        <item>하루 2시간 이하 사용</item>
+        <item>식사 중 휴대폰 사용 금지</item>
+        <item>아침 시간 휴대폰 사용 금지</item>
+        <item>기타 맞춤 목표</item>
+    </string-array>
+
+</resources>

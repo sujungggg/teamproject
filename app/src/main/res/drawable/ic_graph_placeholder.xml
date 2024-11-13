@@ -1,0 +1,11 @@
+<!-- ic_graph_placeholder.xml -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="64dp"
+    android:height="64dp"
+    android:viewportWidth="64"
+    android:viewportHeight="64"
+    android:tint="#90A4AE">
+    <path
+        android:fillColor="#90A4AE"
+        android:pathData="M8,56h48v-4H8v4zm8,-8h8v-20h-8v20zm16,0h8v-28h-8v28zm16,0h8v-16h-8v16z" />
+</vector>

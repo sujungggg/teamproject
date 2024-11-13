@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "954616495633",
+    "firebase_url": "https://digitaldetox-c25dd-default-rtdb.firebaseio.com",
+    "project_id": "digitaldetox-c25dd",
+    "storage_bucket": "digitaldetox-c25dd.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954616495633:android:5de177024fbba904d17bb0",
+        "android_client_info": {
+          "package_name": "com.example.digitaldetoxapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "954616495633-grhpeiomjt64lj040u9dhkbq464od2f2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJwpQ5RXNVoX6QpO71SMjGusr8e4n7Z0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "954616495633-grhpeiomjt64lj040u9dhkbq464od2f2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
