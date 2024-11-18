@@ -1,0 +1,47 @@
+[1mdiff --git a/app/src/main/java/com/example/digitaldetoxapp/StartActivity.java b/app/src/main/java/com/example/digitaldetoxapp/StartActivity.java[m
+[1mindex 75c2d0c..bde28f2 100644[m
+[1m--- a/app/src/main/java/com/example/digitaldetoxapp/StartActivity.java[m
+[1m+++ b/app/src/main/java/com/example/digitaldetoxapp/StartActivity.java[m
+[36m@@ -1,7 +1,9 @@[m
+ package com.example.digitaldetoxapp;[m
+ [m
+ import android.app.TimePickerDialog;[m
+[32m+[m[32mimport android.content.Context;[m
+ import android.content.Intent;[m
+[32m+[m[32mimport android.content.SharedPreferences;[m
+ import android.os.Bundle;[m
+ import android.view.View;[m
+ import android.widget.ArrayAdapter;[m
+[36m@@ -15,6 +17,7 @@[m [mimport androidx.appcompat.app.AppCompatActivity;[m
+ [m
+ import java.util.ArrayList;[m
+ import java.util.Calendar;[m
+[32m+[m[32mimport java.util.HashSet;[m
+ [m
+ public class StartActivity extends AppCompatActivity {[m
+ [m
+[36m@@ -83,6 +86,12 @@[m [mpublic class StartActivity extends AppCompatActivity {[m
+                 } else if (selectedHour == 0 && selectedMinute == 0) {[m
+                     Toast.makeText(StartActivity.this, "시간을 설정하세요!", Toast.LENGTH_SHORT).show();[m
+                 } else {[m
+[32m+[m[32m                    // SharedPreferences에 선택된 챌린지 저장(AppBlockAccessibilityService에서 쓰기위함)[m
+[32m+[m[32m                    SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);[m
+[32m+[m[32m                    SharedPreferences.Editor editor = sharedPreferences.edit();[m
+[32m+[m[32m                    editor.putStringSet("selectedChallenges", new HashSet<>(selectedChallenges));[m
+[32m+[m[32m                    editor.apply();  // 저장 완료[m
+[32m+[m
+                     // 선택된 시간을 초로 변환[m
+                     int totalSeconds = (selectedHour * 3600) + (selectedMinute * 60);[m
+                     // ChallengeDetailActivity로 이동[m
+[1mdiff --git a/settings.gradle.kts b/settings.gradle.kts[m
+[1mindex 7eec80c..517d359 100644[m
+[1m--- a/settings.gradle.kts[m
+[1m+++ b/settings.gradle.kts[m
+[36m@@ -10,6 +10,7 @@[m [mdependencyResolutionManagement {[m
+     repositories {[m
+         google()[m
+         mavenCentral()[m
+[32m+[m[32m        maven("https://jitpack.io")[m
+     }[m
+ }[m
+ [m

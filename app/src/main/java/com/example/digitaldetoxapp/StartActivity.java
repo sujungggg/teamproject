@@ -1,7 +1,9 @@
 package com.example.digitaldetoxapp;
 
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 
 public class StartActivity extends AppCompatActivity {
 
@@ -83,6 +86,12 @@ public class StartActivity extends AppCompatActivity {
                 } else if (selectedHour == 0 && selectedMinute == 0) {
                     Toast.makeText(StartActivity.this, "시간을 설정하세요!", Toast.LENGTH_SHORT).show();
                 } else {
+                    // SharedPreferences에 선택된 챌린지 저장(AppBlockAccessibilityService에서 쓰기위함)
+                    SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putStringSet("selectedChallenges", new HashSet<>(selectedChallenges));
+                    editor.apply();  // 저장 완료
+
                     // 선택된 시간을 초로 변환
                     int totalSeconds = (selectedHour * 3600) + (selectedMinute * 60);
                     // ChallengeDetailActivity로 이동
