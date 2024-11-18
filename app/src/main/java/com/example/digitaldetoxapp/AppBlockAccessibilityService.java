@@ -40,8 +40,8 @@ public class AppBlockAccessibilityService extends AccessibilityService {
                 blockApp("카메라");
             } else if (selectedChallenges.contains("갤러리") && packageName.equals(PHOTOS_PACKAGE)) {
                 blockApp("갤러리");
-            } else if (selectedChallenges.contains("유튜브") && packageName.equals(YOUTUBE_PACKAGE)) {
-                blockApp("유튜브");
+            } else if (selectedChallenges.contains("Youtube") && packageName.equals(YOUTUBE_PACKAGE)) {
+                blockApp("Youtube");
             } else if (selectedChallenges.contains("전화") && packageName.equals(DIALER_PACKAGE)) {
                 blockApp("전화");
             } else if (selectedChallenges.contains("메시지") && packageName.equals(MESSAGE_PACKAGE)) {
