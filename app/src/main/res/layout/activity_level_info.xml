@@ -1,4 +1,4 @@
-git <?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@ git <?xml version="1.0" encoding="utf-8"?>
     android:gravity="center"
     android:background="@android:color/white">
 
-    <!-- 앱 이름 텍스트뷰 -->
+    <!-- App Name -->
     <TextView
         android:id="@+id/tv_app_name"
         android:layout_width="wrap_content"
@@ -16,19 +16,20 @@ git <?xml version="1.0" encoding="utf-8"?>
         android:text="Digital Detox Challenge"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp" />
 
-    <!-- 현재 레벨 텍스트뷰 -->
+    <!-- Current Level -->
     <TextView
         android:id="@+id/tv_current_level"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="현재 레벨: 골드"
         android:textSize="20sp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="16dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/holo_orange_light" />
 
-    <!-- 레벨 이미지 목록 -->
+    <!-- Level Image List -->
     <GridLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,141 +37,158 @@ git <?xml version="1.0" encoding="utf-8"?>
         android:columnCount="3"
         android:gravity="center">
 
-        <!-- 브론즈 레벨 이미지 -->
+        <!-- Bronze Level -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/iv_bronze"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/medal_bronze"
-                android:layout_marginBottom="8dp" />
+                android:alpha="0.5" /> <!-- Default dimmed -->
+
             <TextView
+                android:id="@+id/tv_level_bronze"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="브론즈"
                 android:textSize="16sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray" /> <!-- Default dimmed -->
         </LinearLayout>
 
-        <!-- 실버 레벨 이미지 -->
+        <!-- Silver Level -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/iv_silver"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/medal_silver"
-                android:layout_marginBottom="8dp" />
+                android:alpha="0.5" />
+
             <TextView
+                android:id="@+id/tv_level_silver"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="실버"
                 android:textSize="16sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
-        <!-- 골드 레벨 이미지 -->
+        <!-- Gold Level -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/iv_gold"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/medal_gold"
-                android:layout_marginBottom="8dp" />
+                android:alpha="0.5" />
+
             <TextView
+                android:id="@+id/tv_level_gold"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="골드"
                 android:textSize="16sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
-        <!-- 플래티넘 레벨 이미지 -->
+        <!-- Platinum Level -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/iv_platinum"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/medal_platinum"
-                android:layout_marginBottom="8dp" />
+                android:alpha="0.5" />
+
             <TextView
+                android:id="@+id/tv_level_platinum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="플래티넘"
                 android:textSize="16sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
-        <!-- 다이아 레벨 이미지 -->
+        <!-- Diamond Level -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/iv_diamond"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/medal_diamond"
-                android:layout_marginBottom="8dp" />
+                android:alpha="0.5" />
+
             <TextView
+                android:id="@+id/tv_level_diamond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="다이아"
                 android:textSize="16sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
 
-        <!-- 챌린저 레벨 이미지 -->
+        <!-- Challenger Level -->
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginBottom="16dp">
+            android:layout_margin="16dp">
 
             <ImageView
                 android:id="@+id/iv_challenger"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:src="@drawable/medal_challenger"
-                android:layout_marginBottom="8dp" />
+                android:alpha="0.5" />
+
             <TextView
+                android:id="@+id/tv_level_challenger"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="챌린저"
                 android:textSize="16sp"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:textColor="@android:color/darker_gray" />
         </LinearLayout>
-
     </GridLayout>
 
-    <!-- 돌아가기 버튼 -->
+    <!-- Back Button -->
     <Button
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
@@ -180,6 +198,5 @@ git <?xml version="1.0" encoding="utf-8"?>
         android:padding="12dp"
         android:backgroundTint="@android:color/holo_blue_light"
         android:layout_marginTop="16dp"
-        android:layout_gravity="center_horizontal"/>
-
+        android:layout_gravity="center_horizontal" />
 </LinearLayout>

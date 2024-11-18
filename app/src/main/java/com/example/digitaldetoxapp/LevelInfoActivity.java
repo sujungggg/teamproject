@@ -1,76 +1,105 @@
-//package com.example.digitaldetoxapp;
-//
-//import android.util.Log;
-//import android.content.Intent;
-//import android.os.Bundle;
-//import android.view.View;
-//import android.widget.Button;
-//import android.widget.ImageView;
-//import android.widget.TextView;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.firestore.FirebaseFirestore;
-//
-//public class LevelInfoActivity extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_level_info);
-//
-//        // 앱 이름 설정
-//        TextView appNameTextView = findViewById(R.id.tv_app_name);
-//        appNameTextView.setText("Digital Detox Challenge");
-//
-//        // 현재 레벨 설정 (예시로 골드로 설정)
-//        TextView currentLevelTextView = findViewById(R.id.tv_current_level);
-//        currentLevelTextView.setText("현재 레벨: 골드");
-//
-//        // Fetch current level from Firestore
-//        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        FirebaseFirestore.getInstance().collection("Users").document(userId)
-//                .get()
-//                .addOnSuccessListener(documentSnapshot -> {
-//                    if (documentSnapshot.exists()) {
-//                        String level = documentSnapshot.getString("level");
-//                        currentLevelTextView.setText("Your Current Level: " + level);
-//                    }
-//                })
-//                .addOnFailureListener(e -> Log.e("LevelInfoActivity", "Failed to fetch user level", e));
-//    }
-//
-//
-//        // 레벨별 이미지 설정
-//        ImageView bronzeMedal = findViewById(R.id.iv_bronze);
-//        bronzeMedal.setImageResource(R.drawable.medal_bronze);
-//
-//        ImageView silverMedal = findViewById(R.id.iv_silver);
-//        silverMedal.setImageResource(R.drawable.medal_silver);
-//
-//        ImageView goldMedal = findViewById(R.id.iv_gold);
-//        goldMedal.setImageResource(R.drawable.medal_gold);
-//
-//        ImageView platinumMedal = findViewById(R.id.iv_platinum);
-//        platinumMedal.setImageResource(R.drawable.medal_platinum);
-//
-//        ImageView diamondMedal = findViewById(R.id.iv_diamond);
-//        diamondMedal.setImageResource(R.drawable.medal_diamond);
-//
-//        ImageView challengerMedal = findViewById(R.id.iv_challenger);
-//        challengerMedal.setImageResource(R.drawable.medal_challenger);
-//
-//        // 돌아가기 버튼 설정
-//        Button backButton = findViewById(R.id.button_back);
-//        backButton.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                // SuccessActivity로 이동
-//                Intent intent = new Intent(LevelInfoActivity.this, SuccessActivity.class);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-//    }
-//}
+package com.example.digitaldetoxapp;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+public class LevelInfoActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_level_info);
+
+        // Fetch current level from Firebase
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseFirestore.getInstance().collection("Users").document(userId)
+                .get()
+                .addOnSuccessListener(documentSnapshot -> {
+                    if (documentSnapshot.exists()) {
+                        String userLevel = documentSnapshot.getString("level");
+                        if (userLevel != null) {
+                            displayCurrentLevel(userLevel); // Update the UI with the user's level
+                        }
+                    }
+                })
+                .addOnFailureListener(e -> Log.e("LevelInfoActivity", "Failed to fetch user level", e));
+    }
+
+    /**
+     * Display the current level and highlight it in the UI.
+     */
+    private void displayCurrentLevel(String userLevel) {
+        TextView currentLevelTextView = findViewById(R.id.tv_current_level);
+        currentLevelTextView.setText("현재 레벨: " + userLevel);
+
+        // Reset styles for all medals and text
+        resetAllMedals();
+
+        // Highlight the current level
+        switch (userLevel) {
+            case "Bronze":
+                highlightMedal(R.id.iv_bronze, R.id.tv_level_bronze);
+                break;
+            case "Silver":
+                highlightMedal(R.id.iv_silver, R.id.tv_level_silver);
+                break;
+            case "Gold":
+                highlightMedal(R.id.iv_gold, R.id.tv_level_gold);
+                break;
+            case "Platinum":
+                highlightMedal(R.id.iv_platinum, R.id.tv_level_platinum);
+                break;
+            case "Diamond":
+                highlightMedal(R.id.iv_diamond, R.id.tv_level_diamond);
+                break;
+            case "Challenger":
+                highlightMedal(R.id.iv_challenger, R.id.tv_level_challenger);
+                break;
+        }
+    }
+
+    /**
+     * Reset all medals and text to their default (dimmed) state.
+     */
+    private void resetAllMedals() {
+        int[] medalIds = {
+                R.id.iv_bronze, R.id.iv_silver, R.id.iv_gold,
+                R.id.iv_platinum, R.id.iv_diamond, R.id.iv_challenger
+        };
+        int[] textIds = {
+                R.id.tv_level_bronze, R.id.tv_level_silver, R.id.tv_level_gold,
+                R.id.tv_level_platinum, R.id.tv_level_diamond, R.id.tv_level_challenger
+        };
+
+        for (int medalId : medalIds) {
+            ImageView medal = findViewById(medalId);
+            medal.setAlpha(0.5f); // Dimmed for non-current levels
+        }
+
+        for (int textId : textIds) {
+            TextView text = findViewById(textId);
+            text.setTextColor(getResources().getColor(android.R.color.darker_gray)); // Default text color
+            text.setTextSize(14); // Default text size
+        }
+    }
+
+    /**
+     * Highlight the medal and text for the current level.
+     */
+    private void highlightMedal(int medalId, int textId) {
+        ImageView medal = findViewById(medalId);
+        TextView text = findViewById(textId);
+
+        medal.setAlpha(1.0f); // Fully visible
+        text.setTextColor(getResources().getColor(android.R.color.holo_orange_light)); // Highlighted color
+        text.setTextSize(18); // Enlarged text size
+        text.setTypeface(null, android.graphics.Typeface.BOLD); // Bold text
+    }
+}
