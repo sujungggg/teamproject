@@ -31,7 +31,7 @@ public class SuccessActivity extends AppCompatActivity {
         });
 
         // 레벨 현황 버튼 설정
-//        levelInfoButton = findViewById(R.id.button_level_status);
+        levelInfoButton = findViewById(R.id.button_level_status);
         levelInfoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

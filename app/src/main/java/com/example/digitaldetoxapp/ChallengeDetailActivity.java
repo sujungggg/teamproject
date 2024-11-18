@@ -2,8 +2,10 @@ package com.example.digitaldetoxapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +16,25 @@ import java.util.ArrayList;
 public class ChallengeDetailActivity extends AppCompatActivity {
 
     private CircularTimerView circularTimerView;
+    private TextView selectedTimeTextView;
+    private boolean isAccessibilitySettingsOpened = false;
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        // 설정 화면이 이미 열리지 않았다면
+        if (!isAccessibilitySettingsOpened) {
+            goAccessibilitySetting();
+            isAccessibilitySettingsOpened = true; // 설정 화면을 열었음을 표시
+        }
+
+    }
+
+    private void goAccessibilitySetting(){
+        Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
+        startActivity(intent);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +55,17 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         int totalSeconds = getIntent().getIntExtra("selectedTimeInSeconds", 0);
         circularTimerView = findViewById(R.id.circularTimerView);
         circularTimerView.setTotalTime(totalSeconds);
+
+        // 선택된 시간 표시 텍스트뷰 설정
+        selectedTimeTextView = findViewById(R.id.selectedTimeTextView);
+
+        // 시간과 분 계산
+        int hours = totalSeconds / 3600;
+        int minutes = (totalSeconds % 3600) / 60;
+
+        // "시간:분" 형식으로 표시
+        String time = String.format("%02d:%02d", hours, minutes);
+        selectedTimeTextView.setText("선택된 시간: " + time);
 
         // 타이머 종료 후 SuccessActivity로 이동
         circularTimerView.setOnTimerFinishedListener(new CircularTimerView.OnTimerFinishedListener() {
