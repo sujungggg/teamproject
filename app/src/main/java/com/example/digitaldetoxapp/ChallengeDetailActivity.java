@@ -1,11 +1,17 @@
 package com.example.digitaldetoxapp;
 
+import android.accessibilityservice.AccessibilityServiceInfo;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.view.View;
+import android.view.accessibility.AccessibilityManager;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +20,6 @@ import com.example.digitaldetoxapp.CircularTimerView;
 import java.util.ArrayList;
 
 public class ChallengeDetailActivity extends AppCompatActivity {
-
     private CircularTimerView circularTimerView;
     private TextView selectedTimeTextView;
     private boolean isAccessibilitySettingsOpened = false;
@@ -25,13 +30,15 @@ public class ChallengeDetailActivity extends AppCompatActivity {
 
         // 설정 화면이 이미 열리지 않았다면
         if (!isAccessibilitySettingsOpened) {
-            goAccessibilitySetting();
+            goAccessibilitySetting();             //접근 권한 설정 화면을 띄움
             isAccessibilitySettingsOpened = true; // 설정 화면을 열었음을 표시
         }
 
     }
 
     private void goAccessibilitySetting(){
+        // 접근 권한 안내 메시지
+        Toast.makeText(this, "디지털 디톡스 앱의 접근 권한을 허용해 주세요.", Toast.LENGTH_LONG).show();
         Intent intent = new Intent(Settings.ACTION_ACCESSIBILITY_SETTINGS);
         startActivity(intent);
     }
@@ -76,5 +83,20 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        // 챌린지 중단 버튼 설정
+        Button stopChallengeButton = findViewById(R.id.stopChallengeButton);
+        stopChallengeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 챌린지 중단 로직
+                Toast.makeText(ChallengeDetailActivity.this, "진행중인 챌린지가 중단되었습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ChallengeDetailActivity.this, StartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish(); // 현재 액티비티 종료
+            }
+        });
     }
+
 }
