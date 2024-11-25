@@ -38,6 +38,17 @@
             android:layout_gravity="center"
             android:layout_marginBottom="16dp" />
 
+        <!-- 챌린지 중단 버튼 -->
+        <Button
+            android:id="@+id/stopChallengeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="챌린지 중단하기"
+            android:layout_gravity="center"
+            android:backgroundTint="@android:color/holo_red_light"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="16dp" />
+
         <!-- 선택된 챌린지 리스트 -->
         <ListView
             android:id="@+id/selectedChallengeList"
