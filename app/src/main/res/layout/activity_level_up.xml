@@ -52,7 +52,7 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:src="@drawable/umbrage2"
-                android:layout_marginEnd="16dp"/>
+                android:layout_marginEnd="32dp"/>
 
             <!-- 중앙 레벨업 아이콘 -->
             <ImageView
@@ -71,226 +71,57 @@
                 android:layout_marginStart="16dp"/>
         </LinearLayout>
 
-        <!-- Level-Up 텍스트 -->
-        <TextView
-            android:id="@+id/tv_level_up"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="LEVEL-UP"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:layout_marginBottom="16dp"/>
 
-        <!-- 레벨 아이콘 목록 (GridLayout 사용) -->
-        <GridLayout
+        <!-- Current Level -->
+        <TextView
+            android:id="@+id/tv_current_level"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:columnCount="3"
+            android:text="현재 레벨: 실버"
+            android:textSize="20sp"
+            android:layout_marginBottom="16dp"
+            android:textStyle="bold"
+            android:textColor="@android:color/holo_orange_light" />
+
+        <!-- Medal Transition -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
             android:layout_marginBottom="24dp">
 
-            <!-- 레벨 1 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
+            <!-- Previous Level Medal -->
+            <ImageView
+                android:id="@+id/iv_previous_level"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/medal_bronze" />
 
-                <ImageView
-                    android:id="@+id/level_1_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/level1"
-                    android:layout_marginBottom="8dp"/>
+            <!-- Arrow Image -->
+            <ImageView
+                android:id="@+id/iv_arrow"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/arrow"
+                android:layout_marginHorizontal="16dp" />
 
-                <TextView
-                    android:id="@+id/tv_level_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lv.1"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
-            </LinearLayout>
+            <!-- Current Level Medal -->
+            <ImageView
+                android:id="@+id/iv_current_level"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/medal_silver" />
+        </LinearLayout>
 
-            <!-- 레벨 2 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/level_2_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/level2"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_level_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lv.2"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-            <!-- 레벨 3 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/level_3_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/level3"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_level_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lv.3"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-            <!-- 레벨 4 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/level_4_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/level4"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_level_4"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lv.4"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-            <!-- 레벨 5 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/level_5_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/level5"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_level_5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lv.5"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-            <!-- 레벨 6 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/level_6_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/level6"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_level_6"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lv.6"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-            <!-- 레벨 7 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/level_7_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/level7"
-                    android:layout_marginBottom="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_level_7"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Lv.7"
-                    android:textSize="14sp"
-                    android:gravity="center"/>
-            </LinearLayout>
-
-            <!-- 별 이미지 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/star_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/star"
-                    android:layout_marginBottom="8dp"/>
-            </LinearLayout>
-
-            <!-- 배지 이미지 -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="16dp">
-
-                <ImageView
-                    android:id="@+id/badge_icon"
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/badge"
-                    android:layout_marginBottom="8dp"/>
-            </LinearLayout>
-
-        </GridLayout>
-
-    </LinearLayout>
-</ScrollView>
+        <!-- Return Button -->
+        <Button
+            android:id="@+id/button_return"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="돌아가기"
+            android:textSize="18sp"
+            android:padding="12dp"
+            android:backgroundTint="@android:color/holo_blue_light"
+            android:layout_gravity="center_horizontal" />
+    </LinearLayout></ScrollView>

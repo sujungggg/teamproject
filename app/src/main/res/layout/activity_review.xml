@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 후기 작성 입력 필드 -->
+    <EditText
+        android:id="@+id/editTextReview"
+        android:layout_width="match_parent"
+        android:layout_height="147dp"
+        android:gravity="top|start"
+        android:hint="Write your challenge review here..."
+        android:inputType="textMultiLine"
+        android:padding="10dp" />
+
+    <!-- 제출 버튼 -->
+    <Button
+        android:id="@+id/buttonSubmitReview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제출하기"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp" />
+
+    <!-- 리뷰 목록을 표시할 ListView -->
+
+    <!-- 뒤로 가기 버튼 -->
+    <ListView
+        android:id="@+id/listViewReviews"
+        android:layout_width="match_parent"
+        android:layout_height="396dp"
+        android:layout_below="@id/buttonBackToCommunity"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/buttonBackToCommunity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:text="뒤로가기" />
+
+</LinearLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- 게시물 제목 입력 필드 -->
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="제목을 입력하세요"
+        android:textSize="18sp"
+        android:padding="10dp" />
+
+    <!-- 게시물 내용 입력 필드 -->
+    <EditText
+        android:id="@+id/editTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:hint="내용을 입력하세요"
+        android:textSize="16sp"
+        android:gravity="top|start"
+        android:padding="10dp"
+        android:inputType="textMultiLine" />
+
+    <!-- 게시물 제출 버튼 -->
+    <Button
+        android:id="@+id/buttonSubmitPost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="제출하기"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp" />
+
+    <!-- 뒤로 가기 버튼 -->
+    <Button
+        android:id="@+id/buttonBackToUserPosts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="뒤로가기"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp" />
+</LinearLayout>
