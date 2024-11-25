@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="@color/white">
+    android:background="#CCE4C3">
 
     <!-- 챌린지 성공 메시지 -->
     <TextView

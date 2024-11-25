@@ -3,12 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#CCE4C3">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F7F7F7"
+        android:background="#CCE4C3"
         android:padding="16dp"
         tools:layout_editor_absoluteX="-110dp"
         tools:layout_editor_absoluteY="-87dp">
@@ -139,12 +140,13 @@
                 android:layout_height="167dp"
                 android:src="@drawable/line_graph" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginTop="16dp"
+                android:background="@drawable/button_background"
                 android:text="Home" />
         </LinearLayout>
     </ScrollView>
