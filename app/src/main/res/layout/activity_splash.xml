@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:background="#CCE4C3"
     tools:context=".SplashActivity">
 
     <TextView
@@ -26,7 +26,7 @@
         android:id="@+id/iconImage"
         android:layout_width="133dp"
         android:layout_height="156dp"
-        android:src="@drawable/detox_image"
+        android:src="@drawable/leaf_test"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
