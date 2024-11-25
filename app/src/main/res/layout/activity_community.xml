@@ -12,6 +12,7 @@
 
         <!-- User Post Section -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_user_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -39,6 +40,7 @@
 
         <!-- Ranking Section -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_ranking"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -68,6 +70,7 @@
 
         <!-- Top 10 Section -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_top10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
@@ -96,6 +99,7 @@
 
         <!-- Review Section -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/card_review"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp">
