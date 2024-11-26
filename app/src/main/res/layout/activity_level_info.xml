@@ -16,7 +16,8 @@
         android:text="Digital Detox Challenge"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/black" />
 
     <!-- Current Level -->
     <TextView
@@ -37,155 +38,13 @@
         android:columnCount="3"
         android:gravity="center">
 
-        <!-- Bronze Level -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="16dp">
+        <include layout="@layout/level_item" android:id="@+id/item_bronze" />
+        <include layout="@layout/level_item" android:id="@+id/item_silver" />
+        <include layout="@layout/level_item" android:id="@+id/item_gold" />
+        <include layout="@layout/level_item" android:id="@+id/item_platinum" />
+        <include layout="@layout/level_item" android:id="@+id/item_diamond" />
+        <include layout="@layout/level_item" android:id="@+id/item_challenger" />
 
-            <ImageView
-                android:id="@+id/iv_bronze"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/medal_bronze"
-                android:alpha="0.5" /> <!-- Default dimmed -->
-
-            <TextView
-                android:id="@+id/tv_level_bronze"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="브론즈"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/darker_gray" /> <!-- Default dimmed -->
-        </LinearLayout>
-
-        <!-- Silver Level -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/iv_silver"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/medal_silver"
-                android:alpha="0.5" />
-
-            <TextView
-                android:id="@+id/tv_level_silver"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="실버"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
-
-        <!-- Gold Level -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/iv_gold"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/medal_gold"
-                android:alpha="0.5" />
-
-            <TextView
-                android:id="@+id/tv_level_gold"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="골드"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
-
-        <!-- Platinum Level -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/iv_platinum"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/medal_platinum"
-                android:alpha="0.5" />
-
-            <TextView
-                android:id="@+id/tv_level_platinum"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="플래티넘"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
-
-        <!-- Diamond Level -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/iv_diamond"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/medal_diamond"
-                android:alpha="0.5" />
-
-            <TextView
-                android:id="@+id/tv_level_diamond"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="다이아"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
-
-        <!-- Challenger Level -->
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_margin="16dp">
-
-            <ImageView
-                android:id="@+id/iv_challenger"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:src="@drawable/medal_challenger"
-                android:alpha="0.5" />
-
-            <TextView
-                android:id="@+id/tv_level_challenger"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="챌린저"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:textColor="@android:color/darker_gray" />
-        </LinearLayout>
     </GridLayout>
 
     <!-- Back Button -->
