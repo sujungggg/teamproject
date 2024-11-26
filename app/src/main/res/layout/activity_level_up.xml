@@ -1,10 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?><ScrollView
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    android:background="@android:color/white">
+    android:background="@color/white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,16 +14,63 @@
         android:gravity="center_horizontal"
         android:padding="16dp">
 
-        <!-- App Name -->
+        <!-- Level Up 제목 -->
         <TextView
-            android:id="@+id/tv_app_name"
+            android:id="@+id/tv_level_up_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Digital Detox Challenge"
-            android:textSize="24sp"
+            android:text="Level Up"
+            android:textSize="32sp"
             android:textStyle="bold"
+            android:textColor="@color/black"
             android:gravity="center"
-            android:layout_marginBottom="16dp" />
+            android:layout_marginBottom="16dp"/>
+
+        <!-- Digital Detox Challenge 텍스트 -->
+        <TextView
+            android:id="@+id/tv_digital_detox_challenge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="DIGITAL DETOX CHALLENGE"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="center"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 나뭇잎 이미지와 레벨업 아이콘 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginBottom="24dp">
+
+            <!-- 왼쪽 나뭇잎 이미지 -->
+            <ImageView
+                android:id="@+id/left_leaf"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/umbrage2"
+                android:layout_marginEnd="32dp"/>
+
+            <!-- 중앙 레벨업 아이콘 -->
+            <ImageView
+                android:id="@+id/level_up_icon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/level_up"
+                android:layout_marginEnd="16dp"/>
+
+            <!-- 오른쪽 나뭇잎 이미지 -->
+            <ImageView
+                android:id="@+id/right_leaf"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/umbrage"
+                android:layout_marginStart="16dp"/>
+        </LinearLayout>
+
 
         <!-- Current Level -->
         <TextView
