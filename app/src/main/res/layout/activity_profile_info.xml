@@ -42,6 +42,15 @@
                     android:layout_height="1dp"
                     android:layout_weight="3"
                     android:background="#000000" />
+
+                <Button
+                    android:id="@+id/button_logout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Logout"
+                    android:layout_gravity="center"
+                    android:padding="12dp"
+                    android:backgroundTint="@android:color/black" />
             </LinearLayout>
 
             <!-- 프로필 섹션 -->

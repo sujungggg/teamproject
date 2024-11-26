@@ -16,6 +16,10 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldetoxapp.CircularTimerView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 
@@ -65,7 +69,6 @@ public class ChallengeDetailActivity extends AppCompatActivity {
 
         // 선택된 시간 표시 텍스트뷰 설정
         selectedTimeTextView = findViewById(R.id.selectedTimeTextView);
-
         // 시간과 분 계산
         int hours = totalSeconds / 3600;
         int minutes = (totalSeconds % 3600) / 60;
@@ -74,14 +77,9 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         String time = String.format("%02d:%02d", hours, minutes);
         selectedTimeTextView.setText("선택된 시간: " + time);
 
-        // 타이머 종료 후 SuccessActivity로 이동
-        circularTimerView.setOnTimerFinishedListener(new CircularTimerView.OnTimerFinishedListener() {
-            @Override
-            public void onTimerFinished() {
-                Intent intent = new Intent(ChallengeDetailActivity.this, SuccessActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        // 타이머 종료 후 Firestore에 성공 시간 저장 및 SuccessActivity로 이동
+        circularTimerView.setOnTimerFinishedListener(() -> {
+            saveChallengeTimeToFirestore(totalSeconds); // Firestore 저장
         });
 
         // 챌린지 중단 버튼 설정
@@ -98,5 +96,30 @@ public class ChallengeDetailActivity extends AppCompatActivity {
             }
         });
     }
+    private void saveChallengeTimeToFirestore(int completedTimeInSeconds) {
+        // Firebase 인증에서 사용자 UID 가져오기
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+        // Firestore 인스턴스 가져오기
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference userRef = db.collection("users").document(userId);
+
+        // Firestore에 성공 시간 업데이트
+        userRef.update("totalChallengeTime", FieldValue.increment(completedTimeInSeconds))
+                .addOnSuccessListener(aVoid -> {
+                    // Firestore 업데이트 성공 시 SuccessActivity로 이동
+                    Toast.makeText(this, "챌린지 성공 시간이 저장되었습니다!", Toast.LENGTH_SHORT).show();
+                    navigateToSuccessActivity();
+                })
+                .addOnFailureListener(e -> {
+                    // Firestore 업데이트 실패 시 에러 메시지 표시
+                    Toast.makeText(this, "챌린지 시간이 저장되지 않았습니다: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+    }
+
+    private void navigateToSuccessActivity() {
+        Intent intent = new Intent(ChallengeDetailActivity.this, SuccessActivity.class);
+        startActivity(intent);
+        finish();
+    }
 }

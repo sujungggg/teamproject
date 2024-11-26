@@ -3,21 +3,20 @@ package com.example.digitaldetoxapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.firestore.Source;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private static final String TAG = "LoginActivity";
 
     private EditText usernameEditText;
     private EditText passwordEditText;
@@ -45,49 +44,55 @@ public class LoginActivity extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
 
         // Login button click listener
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String username = usernameEditText.getText().toString().trim();
-                String password = passwordEditText.getText().toString().trim();
+        loginButton.setOnClickListener(v -> {
+            String username = usernameEditText.getText().toString().trim();
+            String password = passwordEditText.getText().toString().trim();
 
-                // Check for admin account
-                if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
-                    Toast.makeText(LoginActivity.this, "관리자 계정으로 로그인 성공", Toast.LENGTH_SHORT).show();
-                    navigateToMainActivity();
-                } else if (username.isEmpty() || password.isEmpty()) {
-                    Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
-                } else {
-                    // Check username and password in Firestore
-                    loginUser(username, password);
-                }
+            if (username.isEmpty() || password.isEmpty()) {
+                Toast.makeText(LoginActivity.this, "아이디와 비밀번호를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Check for admin account
+            if (username.equals(ADMIN_USERNAME) && password.equals(ADMIN_PASSWORD)) {
+                Toast.makeText(LoginActivity.this, "관리자 계정으로 로그인 성공", Toast.LENGTH_SHORT).show();
+                saveUserSession(username); // Save session for admin
+                navigateToMainActivity();
+            } else {
+                // Validate user credentials in Firestore
+                loginUser(username, password);
             }
         });
 
         // Sign up button click listener
-        signUpButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Navigate to RegisterActivity
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
-            }
+        signUpButton.setOnClickListener(v -> {
+            // Navigate to RegisterActivity
+            Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
+            startActivity(intent);
         });
     }
 
     private void loginUser(String username, String password) {
         db.collection("users")
-                .whereEqualTo("name", username)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful() && !task.getResult().isEmpty()) {
-                            DocumentSnapshot document = task.getResult().getDocuments().get(0);
+                .whereEqualTo("name", username) // Query Firestore for username
+                .get(Source.SERVER) // Force fresh data fetch
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        QuerySnapshot result = task.getResult();
+
+                        if (!result.isEmpty()) {
+                            // Get the first matching document
+                            DocumentSnapshot document = result.getDocuments().get(0);
                             String storedPassword = document.getString("password");
 
                             if (storedPassword != null && storedPassword.equals(password)) {
+                                // Successful login
                                 Toast.makeText(LoginActivity.this, "로그인 성공", Toast.LENGTH_SHORT).show();
+
+                                // Save session for the user
+                                saveUserSession(username);
+
+                                // Navigate to MainActivity instead of InfoActivity
                                 navigateToMainActivity();
                             } else {
                                 Toast.makeText(LoginActivity.this, "유효하지 않은 비밀번호입니다.", Toast.LENGTH_SHORT).show();
@@ -95,12 +100,25 @@ public class LoginActivity extends AppCompatActivity {
                         } else {
                             Toast.makeText(LoginActivity.this, "유효하지 않은 사용자 이름입니다.", Toast.LENGTH_SHORT).show();
                         }
+                    } else {
+                        // Firestore query failed
+                        Log.e(TAG, "Firestore query failed: ", task.getException());
+                        Toast.makeText(LoginActivity.this, "로그인 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(e -> {
-                    Log.w("LoginActivity", "Error logging in", e);
-                    Toast.makeText(LoginActivity.this, "로그인 중 오류가 발생했습니다.", Toast.LENGTH_SHORT).show();
+                    // Log and handle Firestore connection errors
+                    Log.e(TAG, "Error connecting to Firestore", e);
+                    Toast.makeText(LoginActivity.this, "네트워크 오류가 발생했습니다. 다시 시도해주세요.", Toast.LENGTH_SHORT).show();
                 });
+    }
+
+    private void saveUserSession(String username) {
+        // Save session information (for debugging, using SharedPreferences)
+        getSharedPreferences("UserSession", MODE_PRIVATE)
+                .edit()
+                .putString("username", username)
+                .apply();
     }
 
     private void navigateToMainActivity() {

@@ -63,6 +63,8 @@
         <activity android:name=".RankingActivity" />
         <activity android:name=".PostDetailActivity" />
         <activity android:name=".TopTenActivity" />
+        <activity android:name=".LevelUpActivity" android:exported="false" />
+
     </application>
 
 </manifest>
