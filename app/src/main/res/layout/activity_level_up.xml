@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:gravity="center_horizontal"
-    android:background="@color/white">
+    android:background="#CCE4C3">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -115,13 +115,13 @@
         </LinearLayout>
 
         <!-- Return Button -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button_return"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="돌아가기"
             android:textSize="18sp"
             android:padding="12dp"
-            android:backgroundTint="@android:color/holo_blue_light"
+            android:background="@drawable/button_background"
             android:layout_gravity="center_horizontal" />
     </LinearLayout></ScrollView>

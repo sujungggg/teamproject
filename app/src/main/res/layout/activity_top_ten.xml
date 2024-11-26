@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#CCE4C3">
 
     <!-- 제목 TextView -->
     <TextView
@@ -27,13 +28,14 @@
         android:padding="8dp" />
 
     <!-- 뒤로 가기 버튼 -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonBackToCommunity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Back to Community"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp" />
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_background"/>
 
 </LinearLayout>
 

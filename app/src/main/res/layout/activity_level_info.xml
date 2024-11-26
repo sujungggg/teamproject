@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="@android:color/white">
+    android:background="#CCE4C3">
 
     <!-- 앱 이름 텍스트뷰 -->
     <TextView
@@ -170,14 +170,14 @@
     </GridLayout>
 
     <!-- 돌아가기 버튼 -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="돌아가기"
         android:textSize="18sp"
         android:padding="12dp"
-        android:backgroundTint="@android:color/holo_blue_light"
+        android:background="@drawable/button_background"
         android:layout_marginTop="16dp"
         android:layout_gravity="center_horizontal"/>
 

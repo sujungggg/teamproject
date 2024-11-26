@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#CCE4C3">
 
     <!-- 제목 입력 필드 -->
     <EditText
@@ -40,7 +41,7 @@
         android:weightSum="2">
 
         <!-- 뒤로가기 버튼 -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonBackToPostDetail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -48,11 +49,10 @@
             android:text="뒤로가기"
             android:textSize="16sp"
             android:padding="12dp"
-            android:backgroundTint="@color/design_default_color_secondary"
-            android:textColor="@android:color/white" />
+            android:background="@drawable/button_background" />
 
         <!-- 저장 버튼 -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/buttonSaveChanges"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -60,8 +60,7 @@
             android:text="저장"
             android:textSize="16sp"
             android:padding="12dp"
-            android:backgroundTint="@color/design_default_color_primary"
-            android:textColor="@android:color/white"
+            android:background="@drawable/button_background"
             android:layout_marginStart="8dp" />
     </LinearLayout>
 </LinearLayout>

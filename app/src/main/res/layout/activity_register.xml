@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="#F0F0F0">
+    android:background="#CCE4C3">
 
     <!-- Title Section -->
     <TextView
@@ -62,17 +62,17 @@
         android:inputType="textPassword" />
 
     <!-- Sign Up Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signup_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:padding="12dp"
         android:layout_gravity="center"
-        android:background="@android:drawable/btn_default" />
+        android:background="@drawable/button_background" />
 
     <!-- Back to Login Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back_to_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,6 +80,6 @@
         android:padding="12dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:background="@android:drawable/btn_default" />
+        android:background="@drawable/button_background" />
 
 </LinearLayout>

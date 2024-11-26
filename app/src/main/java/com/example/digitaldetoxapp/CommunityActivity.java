@@ -11,7 +11,7 @@ import androidx.cardview.widget.CardView;
 public class CommunityActivity extends AppCompatActivity {
 
     private Button homeButton;
-    private CardView userPostCard, rankingCard, top10Card, reviewCard;
+    private CardView userPostCard, top10Card, reviewCard;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,6 @@ public class CommunityActivity extends AppCompatActivity {
 
         homeButton = findViewById(R.id.button_home);
         userPostCard = findViewById(R.id.card_user_post);
-        rankingCard = findViewById(R.id.card_ranking);
         top10Card = findViewById(R.id.card_top10);
         reviewCard = findViewById(R.id.card_review);
 
@@ -40,15 +39,6 @@ public class CommunityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CommunityActivity.this, UserPostActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        // Ranking Card 클릭 리스너 설정
-        rankingCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CommunityActivity.this, RankingActivity.class);
                 startActivity(intent);
             }
         });
