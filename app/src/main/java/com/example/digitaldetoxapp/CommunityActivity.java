@@ -1,9 +1,11 @@
 package com.example.digitaldetoxapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -11,17 +13,18 @@ import androidx.cardview.widget.CardView;
 public class CommunityActivity extends AppCompatActivity {
 
     private Button homeButton;
-    private CardView userPostCard, top10Card, reviewCard;
+    private LinearLayout userPost, top10, review;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_community); // 커뮤니티 레이아웃 설정
 
         homeButton = findViewById(R.id.button_home);
-        userPostCard = findViewById(R.id.card_user_post);
-        top10Card = findViewById(R.id.card_top10);
-        reviewCard = findViewById(R.id.card_review);
+        userPost = findViewById(R.id.button_user_post);
+        top10 = findViewById(R.id.button_top10);
+        review = findViewById(R.id.button_review);
 
         // 홈 버튼 클릭 리스너 설정
         homeButton.setOnClickListener(new View.OnClickListener() {
@@ -35,7 +38,7 @@ public class CommunityActivity extends AppCompatActivity {
         });
 
         // User Post Card 클릭 리스너 설정
-        userPostCard.setOnClickListener(new View.OnClickListener() {
+        userPost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CommunityActivity.this, UserPostActivity.class);
@@ -44,7 +47,7 @@ public class CommunityActivity extends AppCompatActivity {
         });
 
         // Top 10 Card 클릭 리스너 설정
-        top10Card.setOnClickListener(new View.OnClickListener() {
+        top10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CommunityActivity.this, TopTenActivity.class);
@@ -53,7 +56,7 @@ public class CommunityActivity extends AppCompatActivity {
         });
 
         // Review Card 클릭 리스너 설정
-        reviewCard.setOnClickListener(new View.OnClickListener() {
+        review.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(CommunityActivity.this, ReviewActivity.class);

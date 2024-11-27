@@ -37,7 +37,8 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/black"
                 android:textSize="32dp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
 
             <!-- Profile Section -->
             <LinearLayout
@@ -124,6 +125,7 @@
                 android:textSize="25sp" />
 
             <!-- Graphs -->
+
             <ImageView
                 android:id="@+id/bar_chart_image"
                 android:layout_width="325dp"
@@ -153,7 +155,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/button_background"
-            android:text="Home"
+            android:text="뒤로가기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/button_logout"
             app:layout_constraintStart_toStartOf="parent" />
@@ -165,7 +167,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/button_background"
-            android:text="Logout"
+            android:text="로그아웃"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/button_home" />

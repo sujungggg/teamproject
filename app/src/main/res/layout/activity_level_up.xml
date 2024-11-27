@@ -20,11 +20,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Level Up"
-            android:textSize="32sp"
+            android:textSize="40sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:gravity="center"
-            android:layout_marginBottom="16dp"/>
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"/>
 
         <!-- Digital Detox Challenge 텍스트 -->
         <TextView
