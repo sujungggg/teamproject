@@ -11,30 +11,30 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        android:text="COMMUNITY"
+        android:text="커뮤니티"
         android:textColor="@android:color/black"
-        android:textSize="32dp"
+        android:textSize="40dp"
         android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center"
         android:text="DIGITAL DETOX CHALLENGE"
         android:textColor="@android:color/black"
-        android:textSize="15dp"
+        android:textSize="20dp"
         android:textStyle="bold" />
 
+    <!-- 자유게시판 -->
     <ImageView
-        android:layout_width="90dp"
-        android:layout_height="79dp"
+        android:layout_width="123dp"
+        android:layout_height="113dp"
         android:layout_gravity="center"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:src="@drawable/leaf_test" />
 
-    <!-- 자유게시판 -->
     <LinearLayout
         android:id="@+id/button_user_post"
         android:layout_width="match_parent"
@@ -51,12 +51,12 @@
             android:gravity="center"
             android:text="자유게시판"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="23dp"
             android:gravity="center"
             android:text="다른 사용자와 소통해보세요!"
             android:textColor="@android:color/black"
@@ -110,15 +110,15 @@
             android:gravity="center"
             android:text="리뷰 작성하기"
             android:textColor="@android:color/black"
-            android:textSize="20sp"
+            android:textSize="21sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="23dp"
             android:gravity="center"
             android:text="솔직 담백 리뷰 보러가기"
-            android:textColor="@android:color/black"
+            android:textColor="@color/black"
             android:textSize="12sp" />
     </LinearLayout>
 

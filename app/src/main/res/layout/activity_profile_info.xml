@@ -80,7 +80,7 @@
                         android:layout_marginBottom="8dp"
                         android:text="이메일: example@example.com"
                         android:textColor="#888888"
-                        android:textSize="16sp" />
+                        android:textSize="15sp" />
 
                     <TextView
                         android:id="@+id/user_goal_display"
@@ -100,14 +100,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:text="목표 선택"
+                android:layout_gravity="center"
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:textStyle="bold"/>
 
             <Spinner
                 android:id="@+id/goal_spinner"
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:textAlignment="center"
                 android:entries="@array/goal_options"
                 android:background="@drawable/cardview_with_border"/>
 
@@ -119,7 +122,7 @@
                 android:layout_marginTop="24dp"
                 android:layout_marginBottom="16dp"
                 android:layout_gravity="center"
-                android:text="디지털 디톡스 챌린지 성공율"
+                android:text="주요 App 총 사용시간"
                 android:textColor="#000000"
                 android:textStyle="bold"
                 android:textSize="25sp" />
@@ -129,7 +132,7 @@
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/app_usage_bar_chart"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="500dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp" />
 
