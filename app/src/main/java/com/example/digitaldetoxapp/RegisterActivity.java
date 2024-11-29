@@ -101,6 +101,7 @@ public class RegisterActivity extends AppCompatActivity {
             userMap.put("name", name);
             userMap.put("email", user.getEmail());
             userMap.put("password", password); // 비밀번호 저장
+            userMap.put("uid", userId); // 사용자 고유 ID 저장
 
             db.collection("users").document(userId)
                     .set(userMap)

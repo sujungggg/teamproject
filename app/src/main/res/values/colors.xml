@@ -2,5 +2,12 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#4B89DC</color>
     <color name="purple_500">#6200EE</color>
+    <!-- 기존 색상 정의 유지 -->
+    <color name="teal_200">#03DAC5</color>
+    <color name="purple_200">#BB86FC</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="red">#F44336</color>
+
 </resources>

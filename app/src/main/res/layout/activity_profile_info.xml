@@ -125,18 +125,15 @@
                 android:textSize="25sp" />
 
             <!-- Graphs -->
+            <!-- Graphs -->
+            <com.github.mikephil.charting.charts.BarChart
+                android:id="@+id/app_usage_bar_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp" />
 
-            <ImageView
-                android:id="@+id/bar_chart_image"
-                android:layout_width="325dp"
-                android:layout_height="169dp"
-                android:src="@drawable/bar_graph" />
 
-            <ImageView
-                android:id="@+id/line_chart_image"
-                android:layout_width="325dp"
-                android:layout_height="167dp"
-                android:src="@drawable/line_graph" />
         </LinearLayout>
     </ScrollView>
 

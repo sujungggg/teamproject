@@ -87,6 +87,12 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         stopChallengeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // 타이머 멈추기
+                if (circularTimerView != null) {
+                    circularTimerView.resetTimer(); //타이머 시간 리셋
+                    circularTimerView.stopTimer();  //타이머 정지
+                }
+
                 // 챌린지 중단 로직
                 Toast.makeText(ChallengeDetailActivity.this, "진행중인 챌린지가 중단되었습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ChallengeDetailActivity.this, StartActivity.class);
@@ -96,6 +102,8 @@ public class ChallengeDetailActivity extends AppCompatActivity {
             }
         });
     }
+
+
     private void saveChallengeTimeToFirestore(int completedTimeInSeconds) {
         // Firebase 인증에서 사용자 UID 가져오기
         String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
