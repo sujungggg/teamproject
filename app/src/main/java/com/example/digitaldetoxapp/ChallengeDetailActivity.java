@@ -101,8 +101,21 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                 finish(); // 현재 액티비티 종료
             }
         });
-    }
 
+        // 챌린지 중단 버튼 설정
+        Button stopChallengeButton = findViewById(R.id.stopChallengeButton);
+        stopChallengeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // 챌린지 중단 로직
+                Toast.makeText(ChallengeDetailActivity.this, "진행중인 챌린지가 중단되었습니다.", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(ChallengeDetailActivity.this, StartActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish(); // 현재 액티비티 종료
+            }
+        });
+    }
 
     private void saveChallengeTimeToFirestore(int completedTimeInSeconds) {
         // Firebase 인증에서 사용자 UID 가져오기
