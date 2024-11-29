@@ -9,25 +9,28 @@ import java.util.List;
 
 public class UsageStatsManagerHelper {
 
-    private UsageStatsManager usageStatsManager;
+    public static long getAppUsageTime(Context context, String packageName) {
+        UsageStatsManager usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
 
-    public UsageStatsManagerHelper(Context context) {
-        usageStatsManager = (UsageStatsManager) context.getSystemService(Context.USAGE_STATS_SERVICE);
-    }
-
-    public List<UsageStats> getUsageStats(long startTime, long endTime) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            return usageStatsManager.queryUsageStats(UsageStatsManager.INTERVAL_DAILY, startTime, endTime);
+        if (usageStatsManager == null) {
+            return 0;
         }
-        return null;
-    }
-
-    // 오늘의 사용 시간을 가져오는 메서드 예제
-    public List<UsageStats> getTodayUsageStats() {
         Calendar calendar = Calendar.getInstance();
-        long endTime = calendar.getTimeInMillis();
-        calendar.add(Calendar.DAY_OF_YEAR, -1);
+        long endTime = calendar.getTimeInMillis(); // 현재 시간
+        calendar.add(Calendar.DAY_OF_YEAR, -1); // 하루 전부터
         long startTime = calendar.getTimeInMillis();
-        return getUsageStats(startTime, endTime);
+
+        List<UsageStats> stats = usageStatsManager.queryUsageStats(
+                UsageStatsManager.INTERVAL_DAILY, startTime, endTime);
+
+        long totalTime = 0;
+        if (stats != null) {
+            for (UsageStats usageStats : stats) {
+                if (usageStats.getPackageName().equals(packageName)) {
+                    totalTime += usageStats.getTotalTimeInForeground(); // 포그라운드에서의 사용 시간
+                }
+            }
+        }
+        return totalTime; // 밀리초 단위로 반환
     }
 }

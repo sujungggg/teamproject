@@ -7,14 +7,15 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="@color/white">
+    android:background="#CCE4C3">
 
     <!-- 챌린지 성공 메시지 -->
     <TextView
         android:id="@+id/tv_challenge_success"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Challenge Success"
+        android:text="챌린지 성공!"
+        android:textStyle="bold"
         android:textSize="32sp"
         android:textColor="@color/black"
         android:fontFamily="sans-serif-medium"
@@ -30,6 +31,7 @@
         android:textSize="18sp"
         android:backgroundTint="@android:color/holo_orange_light"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="30dp"
         android:layout_gravity="center_horizontal" />
 
     <!-- 배지 이미지 (세 개의 배지) -->
@@ -45,7 +47,7 @@
             android:id="@+id/iv_badge1"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/badge"
+            android:src="@drawable/umbrage2"
             android:layout_marginEnd="16dp" />
 
         <!-- 두 번째 배지 이미지 -->
@@ -53,7 +55,7 @@
             android:id="@+id/iv_badge2"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/star"
+            android:src="@drawable/badge"
             android:layout_marginEnd="16dp" />
 
         <!-- 세 번째 배지 이미지 -->
@@ -61,7 +63,7 @@
             android:id="@+id/iv_badge3"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:src="@drawable/triangle" />
+            android:src="@drawable/umbrage" />
     </LinearLayout>
 
     <!-- 격려 메시지 -->
@@ -69,25 +71,38 @@
         android:id="@+id/tv_encouragement"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="고생하셨어요!"
-        android:textSize="16sp"
-        android:textColor="@color/black"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif"
         android:gravity="center"
-        android:layout_marginTop="24dp"/>
+        android:text="축하합니다!"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
 
+    <TextView
+        android:id="@+id/tv_encouragement1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center"
+        android:text="홈으로 이동하거나 챌린지를 다시 시작하세요!"
+        android:textColor="@color/black"
+        android:textSize="10sp" />
     <!-- 홈으로 가기 버튼 -->
+
+    <!-- 챌린지 다시 시작 버튼 -->
     <Button
         android:id="@+id/button_home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="홈으로"
-        android:textSize="18sp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@android:color/holo_blue_light"
-        android:layout_gravity="center_horizontal" />
+        android:text="홈으로"
+        android:textSize="18sp" />
 
-    <!-- 챌린지 다시 시작 버튼 -->
     <Button
         android:id="@+id/button_retry"
         android:layout_width="wrap_content"

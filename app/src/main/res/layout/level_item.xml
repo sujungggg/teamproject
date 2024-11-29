@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="16dp">
+
+    <ImageView
+        android:id="@+id/iv_level_icon"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/medal_bronze"
+        android:alpha="0.5" /> <!-- 기본적으로 투명하게 -->
+
+    <TextView
+        android:id="@+id/tv_level_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="레벨명"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:textColor="@android:color/darker_gray" />
+</LinearLayout>

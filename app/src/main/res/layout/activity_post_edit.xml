@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#CCE4C3">
+
+    <!-- 제목 입력 필드 -->
+    <EditText
+        android:id="@+id/editTextTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="제목을 입력하세요"
+        android:textSize="18sp"
+        android:padding="8dp"
+        android:background="@android:drawable/edit_text"
+        android:layout_marginBottom="12dp" />
+
+    <!-- 내용 입력 필드 -->
+    <EditText
+        android:id="@+id/editTextContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="내용을 입력하세요"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:gravity="top"
+        android:background="@android:drawable/edit_text"
+        android:inputType="textMultiLine"
+        android:scrollbars="vertical" />
+
+    <!-- 버튼 컨테이너 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:weightSum="2">
+
+        <!-- 뒤로가기 버튼 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonBackToPostDetail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="뒤로가기"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@drawable/button_background" />
+
+        <!-- 저장 버튼 -->
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/buttonSaveChanges"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="저장"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@drawable/button_background"
+            android:layout_marginStart="8dp" />
+    </LinearLayout>
+</LinearLayout>
+

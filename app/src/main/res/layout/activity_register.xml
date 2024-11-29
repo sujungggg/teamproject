@@ -5,13 +5,13 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:gravity="center"
-    android:background="#F0F0F0">
+    android:background="#CCE4C3">
 
     <!-- Title Section -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sign Up"
+        android:text="회원가입"
         android:textSize="32sp"
         android:textStyle="bold"
         android:gravity="center"
@@ -22,7 +22,7 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Name"
+        android:hint="아이디"
         android:padding="12dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@android:color/darker_gray"
@@ -33,7 +33,7 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Email"
+        android:hint="이메일"
         android:padding="12dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@android:color/darker_gray"
@@ -44,7 +44,7 @@
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Password"
+        android:hint="비밀번호"
         android:padding="12dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="@android:color/darker_gray"
@@ -55,24 +55,24 @@
         android:id="@+id/confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Confirm Password"
+        android:hint="비밀번호 재입력"
         android:padding="12dp"
         android:layout_marginBottom="32dp"
         android:backgroundTint="@android:color/darker_gray"
         android:inputType="textPassword" />
 
     <!-- Sign Up Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signup_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"
         android:padding="12dp"
         android:layout_gravity="center"
-        android:background="@android:drawable/btn_default" />
+        android:background="@drawable/button_background" />
 
     <!-- Back to Login Button -->
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/back_to_login_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -80,6 +80,6 @@
         android:padding="12dp"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:background="@android:drawable/btn_default" />
+        android:background="@drawable/button_background" />
 
 </LinearLayout>

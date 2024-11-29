@@ -1,131 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true">
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#CCE4C3">
 
-    <LinearLayout
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="20dp"
+        android:text="커뮤니티"
+        android:textColor="@android:color/black"
+        android:textSize="40dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:text="DIGITAL DETOX CHALLENGE"
+        android:textColor="@android:color/black"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
+    <!-- 자유게시판 -->
+    <ImageView
+        android:layout_width="123dp"
+        android:layout_height="113dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/leaf_test" />
+
+    <LinearLayout
+        android:id="@+id/button_user_post"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="80dp"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:background="@drawable/button_background"
+        android:padding="16dp"
+        android:gravity="center">
 
-        <!-- User Post Section -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User Post"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Some user post details here..."
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Ranking Section -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ranking"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <!-- Placeholder for Ranking Graph -->
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:layout_marginTop="8dp"
-                    android:src="@drawable/ic_graph_placeholder"
-                    android:scaleType="fitCenter" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Top 10 Section -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center_horizontal">
-
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:src="@drawable/ic_star" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Top 10"
-                    android:layout_marginTop="8dp"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <!-- Review Section -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Review"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="User reviews go here..."
-                    android:layout_marginTop="8dp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-        <Button
-            android:id="@+id/button_home"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Home"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"/>
+            android:gravity="center"
+            android:text="자유게시판"
+            android:textColor="@android:color/black"
+            android:textSize="21sp"
+            android:textStyle="bold" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:gravity="center"
+            android:text="다른 사용자와 소통해보세요!"
+            android:textColor="@android:color/black"
+            android:textSize="12sp" />
     </LinearLayout>
-</ScrollView>
+
+    <LinearLayout
+        android:id="@+id/button_top10"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="80dp"
+        android:background="@drawable/button_background"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <!-- 텍스트 -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            android:text="Top 10"
+            android:textColor="@android:color/black"
+            android:textSize="25sp"
+            android:textStyle="bold" /> <!-- 텍스트와 아이콘 간격 -->
+
+        <!-- 별 아이콘 -->
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_star" />
+    </LinearLayout>
+
+
+
+    <!-- 리뷰 작성하기 -->
+    <LinearLayout
+        android:id="@+id/button_review"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:layout_marginBottom="80dp"
+        android:orientation="vertical"
+        android:background="@drawable/button_background"
+        android:padding="16dp"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="리뷰 작성하기"
+            android:textColor="@android:color/black"
+            android:textSize="21sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="23dp"
+            android:gravity="center"
+            android:text="솔직 담백 리뷰 보러가기"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- 홈 버튼 -->
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/button_home"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/button_background"
+        android:text="Home"
+        android:textColor="@android:color/black"
+        android:textStyle="bold" />
+
+</LinearLayout>

@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#CCE4C3"
     tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/titleText"
         android:layout_width="403dp"
         android:layout_height="106dp"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="88dp"
         android:gravity="center"
         android:text="DIGITAL DETOX CHALLENGE"
         android:textColor="@android:color/black"
         android:textSize="32dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -26,7 +26,7 @@
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:background="@drawable/button_background"
-        android:text="Start"
+        android:text="시작하기"
         android:textColor="@android:color/black"
         android:textSize="27sp"
         android:textStyle="bold"
@@ -35,14 +35,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintVertical_bias="0.341" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button2"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:background="@drawable/button_background"
-        android:text="Info"
+        android:text="내 정보"
         android:textColor="@android:color/black"
         android:textSize="27sp"
         android:textStyle="bold"
@@ -51,14 +51,14 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button1"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.186" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/button3"
         android:layout_width="200dp"
         android:layout_height="60dp"
         android:background="@drawable/button_background"
-        android:text="Community"
+        android:text="커뮤니티"
         android:textColor="@android:color/black"
         android:textSize="27sp"
         android:textStyle="bold"
@@ -67,6 +67,17 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintVertical_bias="0.342" />
+
+    <ImageView
+        android:id="@+id/iconImage"
+        android:layout_width="111dp"
+        android:layout_height="104dp"
+        android:src="@drawable/leaf_test"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
+        app:layout_constraintVertical_bias="0.032" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
