@@ -8,7 +8,7 @@
     </item>
 
     <!-- 내부 CardView 영역 -->
-    <item android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp">
+    <item android:left="3dp" android:top="3dp" android:right="3dp" android:bottom="3dp">
         <shape>
             <solid android:color="#6AAE69" /> <!-- CardView 배경색 -->
             <corners android:radius="26dp" /> <!-- 내부 영역의 곡률 반경 -->

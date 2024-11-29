@@ -12,6 +12,16 @@
         android:padding="16dp">
 
         <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="5dp"
+            android:text="챌린지 진행중"
+            android:textColor="@android:color/black"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+        <TextView
             android:id="@+id/challengeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -22,11 +32,18 @@
             android:textStyle="bold"
             android:paddingBottom="16dp" />
 
+        <ImageView
+            android:layout_width="106dp"
+            android:layout_height="95dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/leaf_test" />
+
         <!-- 커스텀 타이머 뷰 -->
         <com.example.digitaldetoxapp.CircularTimerView
             android:id="@+id/circularTimerView"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="297dp"
+            android:layout_height="255dp"
             android:layout_marginBottom="16dp" />
 
         <!-- 선택된 시간 표시 -->
@@ -41,13 +58,13 @@
             android:layout_marginBottom="16dp" />
 
         <!-- 챌린지 중단 버튼 -->
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/stopChallengeButton"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="챌린지 중단하기"
+            android:background="@drawable/stop_button_background"
             android:layout_gravity="center"
-            android:backgroundTint="@android:color/holo_red_light"
             android:textColor="@android:color/white"
             android:layout_marginBottom="16dp" />
 
