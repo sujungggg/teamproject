@@ -17,13 +17,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="챌린지를 시작하세요!"
-            android:textSize="24sp"
+            android:textSize="30sp"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:textColor="@color/black"
             android:padding="16dp"
             android:clickable="true"
             android:focusable="true" />
+
+        <TextView
+            android:id="@+id/challengeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Digital Detox Challenge"
+            android:textSize="24sp"
+            android:textColor="@android:color/black"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:paddingBottom="16dp" />
+
+        <ImageView
+            android:layout_width="94dp"
+            android:layout_height="79dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="30dp"
+            android:src="@drawable/leaf_test" />
 
         <!-- 중단 위: 챌린지 추천 리스트 -->
         <ListView
@@ -78,7 +96,7 @@
             android:layout_gravity="center"
             android:padding="16dp"
             android:textColor="@color/black"
-            android:textStyle="italic" />
+            android:textStyle="bold" />
 
     </LinearLayout>
 
