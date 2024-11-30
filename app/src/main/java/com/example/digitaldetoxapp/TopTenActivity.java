@@ -33,12 +33,12 @@ public class TopTenActivity extends AppCompatActivity {
     // 레벨 순위 매핑
     private static final Map<String, Integer> LEVEL_ORDER = new HashMap<>();
     static {
-        LEVEL_ORDER.put("챌린저", 1);
-        LEVEL_ORDER.put("다이아", 2);
-        LEVEL_ORDER.put("플래티넘", 3);
-        LEVEL_ORDER.put("골드", 4);
-        LEVEL_ORDER.put("실버", 5);
-        LEVEL_ORDER.put("브론즈", 6);
+        LEVEL_ORDER.put("challenger", 1);
+        LEVEL_ORDER.put("diamond", 2);
+        LEVEL_ORDER.put("platinum", 3);
+        LEVEL_ORDER.put("gold", 4);
+        LEVEL_ORDER.put("silver", 5);
+        LEVEL_ORDER.put("bronze", 6);
     }
 
     @Override
