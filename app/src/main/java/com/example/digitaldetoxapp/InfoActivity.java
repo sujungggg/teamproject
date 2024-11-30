@@ -142,10 +142,10 @@ public class InfoActivity extends AppCompatActivity {
         // 앱 패키지 이름과 X축 레이블 매핑
         List<String> appPackages = Arrays.asList(
                 "com.google.android.youtube", // YouTube
-                "com.google.android.apps.messaging", // 메시지
-                "com.google.android.dialer", // 전화
-                "com.android.camera2", // 카메라
-                "com.google.android.apps.photos" // 갤러리
+                "com.samsung.android.messaging", // 메시지
+                "com.samsung.android.dialer", // 전화
+                "com.sec.android.app.camera", // 카메라
+                "com.sec.android.gallery3d" // 갤러리
         );
 
 //        // 예시 데이터 (앱별 사용 시간)

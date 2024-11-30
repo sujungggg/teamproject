@@ -80,27 +80,37 @@ public class StartActivity extends AppCompatActivity {
                         selectedChallenges.add(challenges[i]);
                     }
                 }
-
                 if (selectedChallenges.isEmpty()) {
                     Toast.makeText(StartActivity.this, "챌린지를 선택하세요!", Toast.LENGTH_SHORT).show();
-                } else if (selectedHour == 0 && selectedMinute == 0) {
-                    Toast.makeText(StartActivity.this, "시간을 설정하세요!", Toast.LENGTH_SHORT).show();
-                } else {
-                    // SharedPreferences에 선택된 챌린지 저장(AppBlockAccessibilityService에서 쓰기위함)
-                    SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
-                    SharedPreferences.Editor editor = sharedPreferences.edit();
-                    editor.putStringSet("selectedChallenges", new HashSet<>(selectedChallenges));
-                    editor.apply();  // 저장 완료
-
-                    // 선택된 시간을 초로 변환
-                    int totalSeconds = (selectedHour * 3600) + (selectedMinute * 60);
-                    // ChallengeDetailActivity로 이동
-                    Intent intent = new Intent(StartActivity.this, ChallengeDetailActivity.class);
-                    intent.putStringArrayListExtra("selectedChallenges", selectedChallenges);
-                    intent.putExtra("selectedTimeInSeconds", totalSeconds);
-                    startActivity(intent);
+                    return; // 선택되지 않았을 경우 다음 코드 실행 방지
                 }
+
+                // 시간 체크 개선
+                if (selectedHour == 0 && selectedMinute == 0) {
+                    Toast.makeText(StartActivity.this, "시간을 설정하세요!", Toast.LENGTH_SHORT).show();
+                    return; // 시간 설정되지 않았을 경우 다음 코드 실행 방지
+                }
+                // SharedPreferences에 선택된 챌린지 저장(AppBlockAccessibilityService에서 쓰기위함)
+                SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putStringSet("selectedChallenges", new HashSet<>(selectedChallenges));
+                editor.apply();  // 저장 완료
+
+                // 선택된 시간을 초로 변환
+                int totalSeconds = (selectedHour * 3600) + (selectedMinute * 60);
+                // ChallengeDetailActivity로 이동
+                Intent intent = new Intent(StartActivity.this, ChallengeDetailActivity.class);
+                intent.putStringArrayListExtra("selectedChallenges", selectedChallenges);
+                intent.putExtra("selectedTimeInSeconds", totalSeconds);
+                startActivity(intent);
             }
+        });
+        // **홈 버튼 추가**
+        Button homeButton = findViewById(R.id.button_home);
+        homeButton.setOnClickListener(v -> {
+            Intent intent = new Intent(StartActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish(); // 현재 액티비티 종료
         });
     }
 }

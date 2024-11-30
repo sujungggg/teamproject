@@ -17,13 +17,14 @@ public class AppBlockAccessibilityService extends AccessibilityService {
     // 카메라 앱 패키지명
     private static final String CAMERA_PACKAGE = "com.sec.android.app.camera";
     // 갤러리 앱 패키지명
-    private static final String PHOTOS_PACKAGE = "com.sec.android.apps.gallery3d";
+    private static final String PHOTOS_PACKAGE = "com.sec.android.gallery3d";
     // 유튜브 앱 패키지명
     private static final String YOUTUBE_PACKAGE = "com.google.android.youtube";
     // 전화 앱 패키지명
     private static final String DIALER_PACKAGE = "com.samsung.android.dialer";
     // 메시지 앱 패키지명
-    private static final String MESSAGE_PACKAGE = "com.samsung.android.apps.messaging";
+    private static final String MESSAGE_PACKAGE = "com.samsung.android.messaging";
+
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
@@ -34,6 +35,12 @@ public class AppBlockAccessibilityService extends AccessibilityService {
             // SharedPreferences에서 사용자가 선택한 챌린지 가져오기
             SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
             Set<String> selectedChallenges = sharedPreferences.getStringSet("selectedChallenges", new HashSet<>());
+
+            // 선택된 챌린지가 없다면 앱 차단을 해제합니다.
+            if (selectedChallenges.isEmpty()) {
+                Log.d("AppBlockService", "No selected challenges. No apps will be blocked.");
+                return;
+            }
 
             // 선택된 챌린지 목록에 따라 앱을 차단
             if (selectedChallenges.contains("카메라") && packageName.equals(CAMERA_PACKAGE)) {
@@ -49,6 +56,7 @@ public class AppBlockAccessibilityService extends AccessibilityService {
             }
         }
     }
+
     private void blockApp(String appName) {
         Log.d("AppBlockService", appName + " 앱이 감지되었습니다!");
         Toast.makeText(this, appName + " 앱이 차단되었습니다!", Toast.LENGTH_SHORT).show();

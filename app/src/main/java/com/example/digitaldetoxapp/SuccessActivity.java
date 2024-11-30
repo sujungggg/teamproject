@@ -48,7 +48,6 @@ public class SuccessActivity extends AppCompatActivity {
         });
 
         // 챌린지 재시작 버튼 설정
-        levelInfoButton = findViewById(R.id.button_level_status);
         retryChallengeButton = findViewById(R.id.button_retry);
 
         homeButton.setOnClickListener(v -> navigateToMainActivity());

@@ -3,6 +3,7 @@ package com.example.digitaldetoxapp;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Objects;
 
 public class ChallengeDetailActivity extends AppCompatActivity {
@@ -102,24 +104,11 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                 finish(); // 현재 액티비티 종료
             }
         });
-
-        // 챌린지 중단 버튼 설정
-        stopChallengeButton = findViewById(R.id.stopChallengeButton);
-        stopChallengeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // 챌린지 중단 로직
-                Toast.makeText(ChallengeDetailActivity.this, "진행중인 챌린지가 중단되었습니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ChallengeDetailActivity.this, StartActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish(); // 현재 액티비티 종료
-            }
-        });
     }
 
     private void saveChallengeTimeToFirestore(int completedTimeInSeconds) {
-        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        // Firebase 인증에서 사용자 UID 가져오기
+        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         // Firestore 인스턴스 가져오기
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -128,8 +117,9 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         // Firestore에 성공 시간 업데이트
         userRef.update("totalChallengeTime", FieldValue.increment(completedTimeInSeconds))
                 .addOnSuccessListener(aVoid -> {
-                    // Firestore 업데이트 성공 시 SuccessActivity로 이동
+                    // Firestore 업데이트 성공 시 제한 해제 및 SuccessActivity로 이동
                     Toast.makeText(this, "챌린지 성공 시간이 저장되었습니다!", Toast.LENGTH_SHORT).show();
+                    resetBlockedApps(); // 차단 앱 초기화
                     navigateToSuccessActivity();
                 })
                 .addOnFailureListener(e -> {
@@ -137,6 +127,15 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                     Toast.makeText(this, "챌린지 시간이 저장되지 않았습니다: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
+    // 차단된 앱 초기화 메서드 추가
+    private void resetBlockedApps() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putStringSet("selectedChallenges", new HashSet<>()); // 앱 차단 목록을 비웁니다
+        editor.apply();
+    }
+
 
     private void navigateToSuccessActivity() {
         Intent intent = new Intent(ChallengeDetailActivity.this, SuccessActivity.class);
