@@ -2,6 +2,7 @@ package com.example.digitaldetoxapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -12,11 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TopTenActivity extends AppCompatActivity {
 
@@ -25,6 +29,17 @@ public class TopTenActivity extends AppCompatActivity {
     private ArrayList<User> userList;
     private ArrayAdapter<String> adapter;
     private FirebaseFirestore db;
+
+    // 레벨 순위 매핑
+    private static final Map<String, Integer> LEVEL_ORDER = new HashMap<>();
+    static {
+        LEVEL_ORDER.put("챌린저", 1);
+        LEVEL_ORDER.put("다이아", 2);
+        LEVEL_ORDER.put("플래티넘", 3);
+        LEVEL_ORDER.put("골드", 4);
+        LEVEL_ORDER.put("실버", 5);
+        LEVEL_ORDER.put("브론즈", 6);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,45 +68,54 @@ public class TopTenActivity extends AppCompatActivity {
     }
 
     private void fetchTopTenUsers() {
-        // Firestore에서 유저 정보를 내림차순으로 정렬하여 가져옴
+        // Firestore에서 유저 정보를 가져옴
         db.collection("users")
-                .orderBy("level", Query.Direction.DESCENDING) // 레벨을 기준으로 내림차순 정렬
-                .limit(10) // 상위 10명만 가져옴
+                .orderBy("level", Query.Direction.ASCENDING) // 정렬을 위한 준비
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         userList = new ArrayList<>();
                         QuerySnapshot querySnapshot = task.getResult();
-                        for (com.google.firebase.firestore.QueryDocumentSnapshot document : querySnapshot) {
-                            String username = document.getString("username");
-                            Long level = document.getLong("level");
+                        if (querySnapshot != null) {
+                            for (QueryDocumentSnapshot document : querySnapshot) {
+                                String username = document.getString("name");
+                                String level = document.getString("level");
+                                Long totalChallengeTime = document.getLong("totalChallengeTime");
 
-                            if (username != null && level != null) {
-                                userList.add(new User(username, level.intValue()));
+                                // 로그 추가
+                                Log.d("TopTenActivity", "Document ID: " + document.getId() + ", Name: " + username + ", Level: " + level);
+
+                                if (username != null && level != null && LEVEL_ORDER.containsKey(level)) {
+                                    userList.add(new User(username, level, totalChallengeTime != null ? totalChallengeTime : 0));
+                                }
                             }
-                        }
 
-                        // 유저 리스트를 레벨 순으로 정렬
-                        Collections.sort(userList, new Comparator<User>() {
-                            @Override
-                            public int compare(User u1, User u2) {
-                                return Integer.compare(u2.getLevel(), u1.getLevel());
+                            // 레벨 순서에 따라 정렬
+                            Collections.sort(userList, new Comparator<User>() {
+                                @Override
+                                public int compare(User u1, User u2) {
+                                    return Integer.compare(LEVEL_ORDER.get(u1.getLevel()), LEVEL_ORDER.get(u2.getLevel()));
+                                }
+                            });
+
+                            // 상위 10명의 유저를 표시할 리스트 생성
+                            ArrayList<String> topTenList = new ArrayList<>();
+                            for (int i = 0; i < Math.min(10, userList.size()); i++) {
+                                User user = userList.get(i);
+                                topTenList.add((i + 1) + ". " + user.getName() + " - 레벨 :  " + user.getLevel() +
+                                        " - 챌린지 성공시간 :  " + user.getTotalChallengeTime());
                             }
-                        });
 
-                        // 상위 10명의 유저를 표시할 리스트 생성
-                        ArrayList<String> topTenList = new ArrayList<>();
-                        for (int i = 0; i < Math.min(10, userList.size()); i++) {
-                            User user = userList.get(i);
-                            topTenList.add((i + 1) + ". " + user.getName() + " - Level: " + user.getLevel());
+                            // 어댑터 설정
+                            adapter = new ArrayAdapter<>(TopTenActivity.this, android.R.layout.simple_list_item_1, topTenList);
+                            listViewTopTen.setAdapter(adapter);
+
+                        } else {
+                            Log.d("TopTenActivity", "Query snapshot is null");
                         }
-
-                        // 어댑터 설정
-                        adapter = new ArrayAdapter<>(TopTenActivity.this, android.R.layout.simple_list_item_1, topTenList);
-                        listViewTopTen.setAdapter(adapter);
-
                     } else {
                         Toast.makeText(TopTenActivity.this, "Failed to load data", Toast.LENGTH_SHORT).show();
+                        Log.e("TopTenActivity", "Error getting documents", task.getException());
                     }
                 });
     }
@@ -99,19 +123,27 @@ public class TopTenActivity extends AppCompatActivity {
     // User 모델 클래스
     static class User {
         private String name;
-        private int level;
+        private String level;
+        private long totalChallengeTime;
 
-        public User(String name, int level) {
+        public User(String name, String level, long totalChallengeTime) {
             this.name = name;
             this.level = level;
+            this.totalChallengeTime = totalChallengeTime;
         }
 
         public String getName() {
             return name;
         }
 
-        public int getLevel() {
+        public String getLevel() {
             return level;
+        }
+
+        public long getTotalChallengeTime() {
+            return totalChallengeTime;
         }
     }
 }
+
+

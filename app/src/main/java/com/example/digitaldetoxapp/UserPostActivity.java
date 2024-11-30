@@ -11,8 +11,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldetoxapp.model.Post;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -30,7 +28,6 @@ public class UserPostActivity extends AppCompatActivity {
     private ArrayList<Post> postList;
     private ArrayAdapter<String> adapter;
 
-    private FirebaseAuth auth;
     private FirebaseFirestore db;
     private CollectionReference postsRef;
 
@@ -39,11 +36,12 @@ public class UserPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_post);
 
+        // UI 요소 초기화
         listViewPosts = findViewById(R.id.listViewPosts);
         buttonCreatePost = findViewById(R.id.buttonCreatePost);
         buttonBackToCommunity = findViewById(R.id.buttonBackToCommunity);
 
-        auth = FirebaseAuth.getInstance();
+        // Firebase 인스턴스 초기화
         db = FirebaseFirestore.getInstance();
         postsRef = db.collection("posts");
 
@@ -89,17 +87,23 @@ public class UserPostActivity extends AppCompatActivity {
             String content = data.getStringExtra("content");
 
             if (title != null && content != null) {
-                FirebaseUser user = auth.getCurrentUser();
-                String userId = user != null ? user.getUid() : "Anonymous";
-                String userEmail = user != null ? user.getEmail() : "Anonymous";
+                // SharedPreferences에서 로그인한 사용자 정보 불러오기
+                String username = getSharedPreferences("UserSession", MODE_PRIVATE)
+                        .getString("username", null); // 사용자 이름 가져오기
 
-                postsRef.add(new Post(null, userId, title, content, new Date(), userEmail))
+                if (username == null) {
+                    Toast.makeText(UserPostActivity.this, "로그인 후 글을 작성해주세요.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                // 글 저장
+                postsRef.add(new Post(null, username, title, content, new Date()))
                         .addOnSuccessListener(documentReference -> {
                             // Firestore에서 자동으로 생성된 문서 ID 가져오기
                             String postId = documentReference.getId();
 
                             // postId를 포함하여 새 Post 객체 생성
-                            Post newPost = new Post(postId, userId, title, content, new Date(), userEmail);
+                            Post newPost = new Post(postId, username, title, content, new Date());
 
                             // Firestore에 postId 업데이트
                             documentReference.update("postId", postId)
@@ -115,7 +119,6 @@ public class UserPostActivity extends AppCompatActivity {
                         .addOnFailureListener(e -> {
                             Toast.makeText(UserPostActivity.this, "글 작성 실패", Toast.LENGTH_SHORT).show();
                         });
-
             }
         }
     }
@@ -130,11 +133,10 @@ public class UserPostActivity extends AppCompatActivity {
                             String title = document.getString("title");
                             String content = document.getString("content");
                             String postId = document.getId();
-                            String userId = document.getString("userId");
-                            String userEmail = document.getString("userEmail");
+                            String username = document.getString("username"); // 이메일 대신 사용자 이름
                             Date timestamp = document.getDate("timestamp");
 
-                            Post post = new Post(postId, userId, title, content, timestamp, userEmail);
+                            Post post = new Post(postId, username, title, content, timestamp);
                             postList.add(post);
                         }
                         updatePostList();
@@ -148,7 +150,7 @@ public class UserPostActivity extends AppCompatActivity {
         ArrayList<String> displayList = new ArrayList<>();
         for (Post post : postList) {
             displayList.add("제목: " + post.getTitle() +
-                    "\n작성자: " + post.getUserEmail() +  // 이메일 추가
+                    "\n작성자: " + post.getUsername() +  // 작성자 이름 표시
                     "\n작성일: " + post.getFormattedTimestamp());
         }
         adapter.clear();
@@ -156,3 +158,4 @@ public class UserPostActivity extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 }
+

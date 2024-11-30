@@ -103,7 +103,7 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         });
 
         // 챌린지 중단 버튼 설정
-        Button stopChallengeButton = findViewById(R.id.stopChallengeButton);
+        stopChallengeButton = findViewById(R.id.stopChallengeButton);
         stopChallengeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

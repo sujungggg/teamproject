@@ -1,6 +1,8 @@
 package com.example.digitaldetoxapp;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,9 +12,8 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 public class PostDetailActivity extends AppCompatActivity {
@@ -25,7 +26,7 @@ public class PostDetailActivity extends AppCompatActivity {
 
     private FirebaseFirestore db;
     private String postId;
-    private String postUserId; // 게시글 작성자의 ID
+    private String postUsername; // 게시글 작성자의 username
     private DocumentReference postRef; // Firestore DocumentReference
 
     @Override
@@ -33,6 +34,7 @@ public class PostDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_post_detail);
 
+        // UI 요소 초기화
         textViewPostTitle = findViewById(R.id.textViewPostTitle);
         textViewPostContent = findViewById(R.id.textViewPostContent);
         buttonEditPost = findViewById(R.id.buttonEditPost);
@@ -80,17 +82,22 @@ public class PostDetailActivity extends AppCompatActivity {
             if (documentSnapshot != null && documentSnapshot.exists()) {
                 String title = documentSnapshot.getString("title");
                 String content = documentSnapshot.getString("content");
-                postUserId = documentSnapshot.getString("userId");
+                postUsername = documentSnapshot.getString("username"); // 게시글 작성자의 username
 
                 textViewPostTitle.setText(title);
                 textViewPostContent.setText(content);
 
-                // 현재 로그인한 사용자와 게시글 작성자 비교
-                FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
-                if (currentUser != null && postUserId != null && postUserId.equals(currentUser.getUid())) {
+                // SharedPreferences에서 로그인한 사용자 정보 가져오기
+                SharedPreferences sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
+                String loggedInUsername = sharedPreferences.getString("username", null);
+
+                // 로그인한 사용자와 게시글 작성자 비교
+                if (loggedInUsername != null && loggedInUsername.equals(postUsername)) {
+                    // 로그인한 사용자가 게시글 작성자일 경우 수정 및 삭제 버튼을 표시
                     buttonEditPost.setVisibility(View.VISIBLE);
                     buttonDeletePost.setVisibility(View.VISIBLE);
                 } else {
+                    // 게시글 작성자가 아닌 경우 버튼을 숨김
                     buttonEditPost.setVisibility(View.GONE);
                     buttonDeletePost.setVisibility(View.GONE);
                 }
@@ -124,4 +131,3 @@ public class PostDetailActivity extends AppCompatActivity {
                 });
     }
 }
-

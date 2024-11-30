@@ -9,8 +9,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldetoxapp.model.Post;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Date;
@@ -23,7 +21,6 @@ public class CreatePostActivity extends AppCompatActivity {
     private Button buttonBackToUserPosts;
 
     private FirebaseFirestore db;
-    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +35,8 @@ public class CreatePostActivity extends AppCompatActivity {
 
         // Firebase 인스턴스 초기화
         db = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
 
-        // 글 작성 버튼
+        // 글 작성 버튼 클릭 리스너
         buttonSubmitPost.setOnClickListener(v -> {
             String title = editTextTitle.getText().toString().trim();
             String content = editTextContent.getText().toString().trim();
@@ -66,19 +62,22 @@ public class CreatePostActivity extends AppCompatActivity {
     }
 
     private void savePostToFirestore(String title, String content) {
-        FirebaseUser user = auth.getCurrentUser();
-        if (user == null) {
+        // SharedPreferences에서 로그인한 사용자 정보 불러오기
+        String username = getSharedPreferences("UserSession", MODE_PRIVATE)
+                .getString("username", null); // 사용자 이름 가져오기
+
+        if (username == null) {
             Toast.makeText(CreatePostActivity.this, "로그인 후 글을 작성해주세요.", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        String userId = user.getUid();
-        String userEmail = user.getEmail();
+        // Firestore에 글 저장
         Date timestamp = new Date();  // 현재 시간
 
-        // Post 객체에 이메일 포함
-        Post post = new Post(null, userId, title, content, timestamp, userEmail);
+        // Post 객체 생성 (이메일 대신 사용자 이름을 저장)
+        Post post = new Post(null, username, title, content, timestamp);
 
+        // Firestore에 저장
         db.collection("posts")
                 .add(post)
                 .addOnSuccessListener(documentReference -> {

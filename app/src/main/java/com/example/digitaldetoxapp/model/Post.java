@@ -5,30 +5,20 @@ import java.util.Date;
 
 public class Post {
     private String postId;
-    private String userId;
+    private String username;  // userEmail -> username으로 변경
     private String title;
     private String content;
     private Date timestamp;
-    private String userEmail; // 새로 추가된 필드
 
-    // 기존 생성자 (userEmail 없이)
-    public Post(String postId, String userId, String title, String content, Date timestamp) {
+    // 기존 생성자 (userEmail 대신 username 사용)
+    public Post(String postId, String username, String title, String content, Date timestamp) {
         this.postId = postId;
-        this.userId = userId;
+        this.username = username;  // userId 대신 username으로 변경
         this.title = title;
         this.content = content;
         this.timestamp = timestamp;
     }
 
-    // 새로 추가된 생성자 (userEmail 포함)
-    public Post(String postId, String userId, String title, String content, Date timestamp, String userEmail) {
-        this.postId = postId;
-        this.userId = userId;
-        this.title = title;
-        this.content = content;
-        this.timestamp = timestamp;
-        this.userEmail = userEmail; // userEmail 초기화
-    }
 
     // Getter 및 Setter 추가
     public String getPostId() {
@@ -39,12 +29,12 @@ public class Post {
         this.postId = postId;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getUsername() {  // userId 대신 username으로 변경
+        return username;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUsername(String username) {  // userId 대신 username으로 변경
+        this.username = username;
     }
 
     public String getTitle() {
@@ -71,14 +61,6 @@ public class Post {
         this.timestamp = timestamp;
     }
 
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
     // 수정된 시간 포맷 반환
     public String getFormattedTimestamp() {
         if (timestamp == null) {
@@ -88,5 +70,3 @@ public class Post {
         return sdf.format(timestamp);
     }
 }
-
-
