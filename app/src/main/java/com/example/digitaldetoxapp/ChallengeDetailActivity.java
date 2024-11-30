@@ -22,6 +22,7 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ChallengeDetailActivity extends AppCompatActivity {
     private CircularTimerView circularTimerView;
@@ -118,8 +119,7 @@ public class ChallengeDetailActivity extends AppCompatActivity {
     }
 
     private void saveChallengeTimeToFirestore(int completedTimeInSeconds) {
-        // Firebase 인증에서 사용자 UID 가져오기
-        String userId = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
 
         // Firestore 인스턴스 가져오기
         FirebaseFirestore db = FirebaseFirestore.getInstance();

@@ -33,12 +33,12 @@ public class TopTenActivity extends AppCompatActivity {
     // 레벨 순위 매핑
     private static final Map<String, Integer> LEVEL_ORDER = new HashMap<>();
     static {
-        LEVEL_ORDER.put("challenger", 1);
-        LEVEL_ORDER.put("diamond", 2);
-        LEVEL_ORDER.put("platinum", 3);
-        LEVEL_ORDER.put("gold", 4);
-        LEVEL_ORDER.put("silver", 5);
-        LEVEL_ORDER.put("bronze", 6);
+        LEVEL_ORDER.put("Challenger", 1);
+        LEVEL_ORDER.put("Diamond", 2);
+        LEVEL_ORDER.put("Platinum", 3);
+        LEVEL_ORDER.put("Gold", 4);
+        LEVEL_ORDER.put("Silver", 5);
+        LEVEL_ORDER.put("Bronze", 6);
     }
 
     @Override
@@ -103,7 +103,7 @@ public class TopTenActivity extends AppCompatActivity {
                             for (int i = 0; i < Math.min(10, userList.size()); i++) {
                                 User user = userList.get(i);
                                 topTenList.add((i + 1) + ". " + user.getName() + " - 레벨 :  " + user.getLevel() +
-                                        " - 챌린지 성공시간 :  " + user.getTotalChallengeTime());
+                                        "\n - 챌린지 성공시간 :  " + user.getTotalChallengeTime());
                             }
 
                             // 어댑터 설정

@@ -15,15 +15,15 @@ import java.util.Set;
 public class AppBlockAccessibilityService extends AccessibilityService {
 
     // 카메라 앱 패키지명
-    private static final String CAMERA_PACKAGE = "com.android.camera2";
+    private static final String CAMERA_PACKAGE = "com.sec.android.app.camera";
     // 갤러리 앱 패키지명
-    private static final String PHOTOS_PACKAGE = "com.google.android.apps.photos";
+    private static final String PHOTOS_PACKAGE = "com.sec.android.apps.gallery3d";
     // 유튜브 앱 패키지명
     private static final String YOUTUBE_PACKAGE = "com.google.android.youtube";
     // 전화 앱 패키지명
-    private static final String DIALER_PACKAGE = "com.google.android.dialer";
+    private static final String DIALER_PACKAGE = "com.samsung.android.dialer";
     // 메시지 앱 패키지명
-    private static final String MESSAGE_PACKAGE = "com.google.android.apps.messaging";
+    private static final String MESSAGE_PACKAGE = "com.samsung.android.apps.messaging";
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {

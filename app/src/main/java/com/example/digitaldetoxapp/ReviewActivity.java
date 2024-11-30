@@ -1,6 +1,7 @@
 package com.example.digitaldetoxapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -11,8 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.digitaldetoxapp.model.Review;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -27,9 +26,9 @@ public class ReviewActivity extends AppCompatActivity {
     private ListView listViewReviews;
 
     private FirebaseFirestore db;
-    private FirebaseAuth auth;
-    private ArrayList<String> reviewsList; // 리뷰 리스트
+    private ArrayList<String> reviewsList;
     private ArrayAdapter<String> adapter;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +41,11 @@ public class ReviewActivity extends AppCompatActivity {
         listViewReviews = findViewById(R.id.listViewReviews);
         buttonBackToCommunity = findViewById(R.id.buttonBackToCommunity);
 
-        // Firebase 초기화
+        // Firebase Firestore 초기화
         db = FirebaseFirestore.getInstance();
-        auth = FirebaseAuth.getInstance();
+
+        // SharedPreferences 초기화
+        sharedPreferences = getSharedPreferences("UserSession", MODE_PRIVATE);
 
         // 리뷰 리스트 초기화
         reviewsList = new ArrayList<>();
@@ -54,7 +55,7 @@ public class ReviewActivity extends AppCompatActivity {
         // 리뷰 목록 불러오기
         loadReviews();
 
-        // 리뷰 제출 버튼 클릭 시
+        // 리뷰 제출 버튼 클릭
         buttonSubmitReview.setOnClickListener(v -> {
             String newReview = editTextReview.getText().toString().trim();
             if (!newReview.isEmpty()) {
@@ -64,21 +65,21 @@ public class ReviewActivity extends AppCompatActivity {
             }
         });
 
-        // 뒤로가기 버튼 클릭 시 CommunityActivity로 이동
+        // 뒤로가기 버튼 클릭
         buttonBackToCommunity.setOnClickListener(v -> {
             Intent intent = new Intent(ReviewActivity.this, CommunityActivity.class);
             startActivity(intent);
-            finish(); // 현재 액티비티 종료
+            finish();
         });
     }
 
     // Firestore에 리뷰 저장
     private void saveReviewToFirestore(String reviewContent) {
-        FirebaseUser user = auth.getCurrentUser();
-        String userEmail = user != null ? user.getEmail() : "익명"; // 로그인한 사용자의 이메일
+        // SharedPreferences에서 사용자 이름 가져오기
+        String userName = sharedPreferences.getString("username", "익명");
 
-        // userEmail을 포함하여 Review 객체 생성
-        Review review = new Review(null, userEmail, reviewContent);
+        // Review 객체 생성
+        Review review = new Review(null, userName, reviewContent);
 
         db.collection("reviews").add(review)
                 .addOnSuccessListener(documentReference -> {
@@ -95,7 +96,7 @@ public class ReviewActivity extends AppCompatActivity {
     private void loadReviews() {
         // 리뷰를 timestamp 기준으로 내림차순 정렬
         db.collection("reviews")
-                .orderBy("timestamp", Query.Direction.DESCENDING) // timestamp 기준으로 내림차순 정렬
+                .orderBy("timestamp", Query.Direction.DESCENDING)
                 .get()
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
@@ -117,10 +118,7 @@ public class ReviewActivity extends AppCompatActivity {
     // 리뷰를 리스트에 추가
     private void appendReviewToList(Review review) {
         String displayUser = (review.getUserEmail() != null) ? review.getUserEmail() : "익명";
-        String reviewContent = "User: " + displayUser + "\n" + review.getContent();
+        String reviewContent = "작성자: " + displayUser + "\n" + review.getContent();
         reviewsList.add(reviewContent); // 리스트에 리뷰 추가
     }
 }
-
-
-
