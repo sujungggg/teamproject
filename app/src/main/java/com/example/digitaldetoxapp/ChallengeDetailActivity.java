@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ArrayAdapter;
@@ -96,6 +97,9 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                     circularTimerView.stopTimer();  //타이머 정지
                 }
 
+                // 차단된 앱 해제
+                resetBlockedApps();
+
                 // 챌린지 중단 로직
                 Toast.makeText(ChallengeDetailActivity.this, "진행중인 챌린지가 중단되었습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ChallengeDetailActivity.this, StartActivity.class);
@@ -128,12 +132,13 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                 });
     }
 
-    // 차단된 앱 초기화 메서드 추가
+    // 차단된 앱 초기화 메서드 호출
     private void resetBlockedApps() {
         SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putStringSet("selectedChallenges", new HashSet<>()); // 앱 차단 목록을 비웁니다
         editor.apply();
+        Log.d("ChallengeDetailActivity", "차단된 앱 목록이 초기화되었습니다.");
     }
 
 

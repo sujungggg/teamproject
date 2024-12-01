@@ -25,7 +25,6 @@ public class AppBlockAccessibilityService extends AccessibilityService {
     // 메시지 앱 패키지명
     private static final String MESSAGE_PACKAGE = "com.samsung.android.messaging";
 
-
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         if (event.getEventType() == AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED) {
@@ -77,6 +76,18 @@ public class AppBlockAccessibilityService extends AccessibilityService {
 
         //서비스 시작이 됐는지 로그 찍기
         Log.d("AppBlockService", "AppBlockService 연결완료");
+    }
 
+    // 차단된 앱 초기화 메서드 수정
+    public void resetBlockedApps(Context context) {
+        if (context == null) {
+            Log.e("AppBlockService", "Context is null. Cannot reset blocked apps.");
+            return;
+        }
+        SharedPreferences sharedPreferences = context.getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putStringSet("selectedChallenges", new HashSet<>()); // 앱 차단 목록을 비웁니다
+        editor.apply();
+        Log.d("AppBlockService", "차단된 앱 목록이 초기화되었습니다.");
     }
 }
