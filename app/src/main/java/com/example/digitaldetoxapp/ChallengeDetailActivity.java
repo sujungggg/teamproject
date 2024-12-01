@@ -79,7 +79,7 @@ public class ChallengeDetailActivity extends AppCompatActivity {
 
         // "시간:분" 형식으로 표시
         String time = String.format("%02d:%02d", hours, minutes);
-        selectedTimeTextView.setText("선택된 시간: " + time);
+        selectedTimeTextView.setText("선택 시간: " + time);
 
         // 타이머 종료 후 Firestore에 성공 시간 저장 및 SuccessActivity로 이동
         circularTimerView.setOnTimerFinishedListener(() -> {

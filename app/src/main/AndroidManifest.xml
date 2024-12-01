@@ -46,6 +46,7 @@
         <activity android:name=".StartActivity" android:exported="false" />
         <activity android:name=".CommunityActivity" android:exported="false" />
         <activity android:name=".InfoActivity" android:exported="false" />
+        <activity android:name=".LevelInfoToProfileActivity" android:exported="false"/>
         <activity android:name=".ChallengeDetailActivity" android:exported="false" />
         <activity android:name=".SuccessActivity" android:exported="false" />
         <activity android:name=".LevelInfoActivity" android:exported="false" />
