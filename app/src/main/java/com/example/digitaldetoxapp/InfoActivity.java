@@ -39,7 +39,7 @@ public class InfoActivity extends AppCompatActivity {
 
     private static final String TAG = "InfoActivity";
 
-    private Button homeButton, logoutButton;
+    private Button homeButton, logoutButton, levelInfoButton;
     private TextView userNameTextView, userEmailTextView, userGoalDisplayTextView;
     private Spinner goalSpinner;
 
@@ -84,6 +84,7 @@ public class InfoActivity extends AppCompatActivity {
         // Initialize UI components
         homeButton = findViewById(R.id.button_home);
         logoutButton = findViewById(R.id.button_logout);
+        levelInfoButton = findViewById(R.id.button_level_info); // 레벨 현황 버튼
         userNameTextView = findViewById(R.id.user_name);
         userEmailTextView = findViewById(R.id.user_email);
         userGoalDisplayTextView = findViewById(R.id.user_goal_display);
@@ -113,7 +114,10 @@ public class InfoActivity extends AppCompatActivity {
 
         // Logout button listener
         logoutButton.setOnClickListener(v -> logout());
+        levelInfoButton.setOnClickListener(v -> goToLevelInfoActivity()); // 레벨 현황 버튼 클릭 시 이동
     }
+
+
     private void setupBarChart() {
         barChart.setDrawBarShadow(false);
         barChart.setDrawValueAboveBar(true);
@@ -142,10 +146,10 @@ public class InfoActivity extends AppCompatActivity {
         // 앱 패키지 이름과 X축 레이블 매핑
         List<String> appPackages = Arrays.asList(
                 "com.google.android.youtube", // YouTube
-                "com.google.android.apps.messaging", // 메시지
-                "com.google.android.dialer", // 전화
-                "com.android.camera2", // 카메라
-                "com.google.android.apps.photos" // 갤러리
+                "com.samsung.android.messaging", // 메시지
+                "com.samsung.android.dialer", // 전화
+                "com.sec.android.app.camera", // 카메라
+                "com.sec.android.gallery3d" // 갤러리
         );
 
 //        // 예시 데이터 (앱별 사용 시간)
@@ -275,6 +279,11 @@ public class InfoActivity extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
         finish();
+    }
+
+    private void goToLevelInfoActivity() {
+        Intent intent = new Intent(InfoActivity.this, LevelInfoToProfileActivity.class);
+        startActivity(intent);
     }
 
     private void logout() {

@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="147dp"
         android:gravity="top|start"
-        android:hint="Write your challenge review here..."
+        android:hint="후기를 작성하세요."
         android:inputType="textMultiLine"
         android:padding="10dp" />
 

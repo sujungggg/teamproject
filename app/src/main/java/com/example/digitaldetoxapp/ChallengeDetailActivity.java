@@ -3,8 +3,10 @@ package com.example.digitaldetoxapp;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.accessibility.AccessibilityManager;
 import android.widget.ArrayAdapter;
@@ -22,6 +24,8 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Objects;
 
 public class ChallengeDetailActivity extends AppCompatActivity {
     private CircularTimerView circularTimerView;
@@ -75,7 +79,7 @@ public class ChallengeDetailActivity extends AppCompatActivity {
 
         // "시간:분" 형식으로 표시
         String time = String.format("%02d:%02d", hours, minutes);
-        selectedTimeTextView.setText("선택된 시간: " + time);
+        selectedTimeTextView.setText("선택 시간: " + time);
 
         // 타이머 종료 후 Firestore에 성공 시간 저장 및 SuccessActivity로 이동
         circularTimerView.setOnTimerFinishedListener(() -> {
@@ -93,20 +97,9 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                     circularTimerView.stopTimer();  //타이머 정지
                 }
 
-                // 챌린지 중단 로직
-                Toast.makeText(ChallengeDetailActivity.this, "진행중인 챌린지가 중단되었습니다.", Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(ChallengeDetailActivity.this, StartActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-                finish(); // 현재 액티비티 종료
-            }
-        });
+                // 차단된 앱 해제
+                resetBlockedApps();
 
-        // 챌린지 중단 버튼 설정
-        Button stopChallengeButton = findViewById(R.id.stopChallengeButton);
-        stopChallengeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 // 챌린지 중단 로직
                 Toast.makeText(ChallengeDetailActivity.this, "진행중인 챌린지가 중단되었습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(ChallengeDetailActivity.this, StartActivity.class);
@@ -128,8 +121,9 @@ public class ChallengeDetailActivity extends AppCompatActivity {
         // Firestore에 성공 시간 업데이트
         userRef.update("totalChallengeTime", FieldValue.increment(completedTimeInSeconds))
                 .addOnSuccessListener(aVoid -> {
-                    // Firestore 업데이트 성공 시 SuccessActivity로 이동
+                    // Firestore 업데이트 성공 시 제한 해제 및 SuccessActivity로 이동
                     Toast.makeText(this, "챌린지 성공 시간이 저장되었습니다!", Toast.LENGTH_SHORT).show();
+                    resetBlockedApps(); // 차단 앱 초기화
                     navigateToSuccessActivity();
                 })
                 .addOnFailureListener(e -> {
@@ -137,6 +131,16 @@ public class ChallengeDetailActivity extends AppCompatActivity {
                     Toast.makeText(this, "챌린지 시간이 저장되지 않았습니다: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                 });
     }
+
+    // 차단된 앱 초기화 메서드 호출
+    private void resetBlockedApps() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ChallengePrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putStringSet("selectedChallenges", new HashSet<>()); // 앱 차단 목록을 비웁니다
+        editor.apply();
+        Log.d("ChallengeDetailActivity", "차단된 앱 목록이 초기화되었습니다.");
+    }
+
 
     private void navigateToSuccessActivity() {
         Intent intent = new Intent(ChallengeDetailActivity.this, SuccessActivity.class);

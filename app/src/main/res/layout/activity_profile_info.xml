@@ -47,22 +47,42 @@
                 android:orientation="horizontal"
                 android:padding="16dp">
 
-                <!-- Profile Image -->
-                <ImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginRight="16dp"
-                    android:background="@drawable/ic_launcher_foreground"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/profile" />
+                <!-- Profile Image and Button Section -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Profile Image -->
+                    <ImageView
+                        android:id="@+id/profile_image"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:background="@drawable/ic_launcher_foreground"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile" />
+
+                    <!-- Level Status Button -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/button_level_info"
+                        android:layout_width="80dp"
+                        android:layout_height="40dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/button_background"
+                        android:paddingStart="12dp"
+                        android:paddingEnd="12dp"
+                        android:text="레벨 현황"
+                        android:textSize="10sp" />
+                </LinearLayout>
 
                 <!-- User Info -->
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:orientation="vertical"
+                    android:layout_marginStart="16dp">
 
                     <TextView
                         android:id="@+id/user_name"
@@ -92,6 +112,7 @@
                         android:textSize="16sp" />
                 </LinearLayout>
             </LinearLayout>
+
 
             <!-- Goal Selection -->
             <TextView
@@ -127,7 +148,6 @@
                 android:textStyle="bold"
                 android:textSize="25sp" />
 
-            <!-- Graphs -->
             <!-- Graphs -->
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/app_usage_bar_chart"
