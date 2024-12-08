@@ -152,13 +152,6 @@ public class InfoActivity extends AppCompatActivity {
                 "com.sec.android.gallery3d" // 갤러리
         );
 
-//        // 예시 데이터 (앱별 사용 시간)
-//        entries.add(new BarEntry(1, 5)); // YouTube: 5시간
-//        entries.add(new BarEntry(2, 3)); // 메시지: 3시간
-//        entries.add(new BarEntry(3, 8)); // 전화: 8시간
-//        entries.add(new BarEntry(4, 2)); // 카메라: 2시간
-//        entries.add(new BarEntry(5, 4)); // 갤러리: 4시간
-
         for (int i = 0; i < appPackages.size(); i++) {
             String packageName = appPackages.get(i);
             long usageTimeMs = UsageStatsManagerHelper.getAppUsageTime(this, packageName);
@@ -171,10 +164,6 @@ public class InfoActivity extends AppCompatActivity {
             // 소수점 없이 정수로 처리
             int usageTimeMinutesInt = (int) usageTimeMinutes; // 소수점 버림
             entries.add(new BarEntry(i + 1, usageTimeMinutesInt));
-
-//            // 초 단위로 변환 (밀리초)
-//            float usageTimeSeconds = usageTimeMs / 1000f;
-//            entries.add(new BarEntry(i + 1, usageTimeSeconds));
         }
 
        // BarDataSet dataSet = new BarDataSet(entries, "앱 사용 시간");
